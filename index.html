@@ -299,7 +299,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
 </style>
 </head>
 <body>
-<a class="sr" href="#configurator">Skip to the configurator</a>
+<a class="sr" href="#configurator">Skip to the shop</a>
 
 <header class="nav">
   <div class="wrap">
@@ -308,10 +308,9 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
       <span class="logo-word" aria-hidden="true">KLUNK<span> CAPS</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#specs">Features</a>
-      <a href="#configurator">3D Configurator</a>
-      <a href="#sound">Sound Test</a>
-      <a href="#sets">Sets</a>
+      <a href="#configurator">Shop</a>
+      <a href="#shipping">Shipping</a>
+      <a href="#faq">FAQ</a>
     </nav>
     <button class="cart-btn" id="cartBtn" type="button" aria-controls="cart" aria-expanded="false">Cart <b id="cartCount">0</b></button>
     <a class="btn btn-primary btn-sm" href="#configurator">Shop now</a>
@@ -324,12 +323,11 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow enter" style="--d:.05s">PBT keycap sets · Cherry profile · MX fit</p>
+        <p class="eyebrow enter" style="--d:.05s">PBT keycap sets · Fits MX switches</p>
         <h1 class="enter" style="--d:.12s">Your setup, but <em>premium</em>.</h1>
-        <p class="hero-lede enter" style="--d:.2s" id="heroLede">28 keycap designs that make your keyboard look sick and sound deeper. Swap them in 15 minutes. Keep them for years.</p>
+        <p class="hero-lede enter" style="--d:.2s" id="heroLede">Three keycap sets, 30 colourways. Pick one, we ship it free, you swap it in 15 minutes.</p>
         <div class="hero-ctas enter" style="--d:.28s">
-          <a class="btn btn-primary" href="#configurator">Build yours</a>
-          <a class="btn btn-ghost" href="#sound">Hear them</a>
+          <a class="btn btn-primary" href="#configurator">Shop the sets</a>
         </div>
         <div class="hero-facts enter" style="--d:.36s">
           <div><strong>From €25</strong>per full set</div>
@@ -341,25 +339,11 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
         <div class="stage-glow"></div>
         <div class="stage-ring"></div>
         <div class="marks" aria-hidden="true"></div>
-        <div class="dim-line" aria-hidden="true"><span>18.0 mm</span><span>CHERRY · R3</span><span>MX +</span></div>
+        <div class="dim-line" aria-hidden="true"><span>18.0 mm</span><span>PBT · DOUBLE-SHOT</span><span>MX +</span></div>
         <canvas id="heroCanvas" aria-label="A 3D keycap that tilts toward your cursor" role="img"></canvas>
         <div class="stage-tag glass mono" aria-hidden="true">TOPO · <b>Matcha Green</b></div>
-        <div class="nogl">Your browser couldn't start 3D, so here's the short version: Topo, Shadow and Script, all PBT, all Cherry profile.</div>
+        <div class="nogl">Your browser couldn't start 3D, so here's the short version: Topo, Phantom and Script, all PBT, all MX fit.</div>
       </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="sec" id="boards" aria-labelledby="boardsTitle" style="padding-bottom:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="eyebrow">On the board</p>
-          <h2 id="boardsTitle">Full sets, fitted</h2>
-        </div>
-        <p>Every set covers a whole keyboard, modifiers and spacebar included. Click a board to load that set in the configurator.</p>
-      </div>
-      <div class="gallery" id="gallery"></div>
     </div>
   </section>
 
@@ -368,10 +352,10 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="eyebrow">3D Configurator</p>
-          <h2 id="cfgTitle">Pick a set. Spin it. Add it.</h2>
+          <p class="eyebrow">Shop</p>
+          <h2 id="cfgTitle">Pick a set. Pick a colour. Done.</h2>
         </div>
-        <p>Choose a set and a colour and the keycap changes live. Drag to turn it, and switch the backlight on to see how the side legends glow.</p>
+        <p>The 3D keycap changes as you choose. Drag it to look around. The photo shows the full set on a real keyboard.</p>
       </div>
       <div class="cfg">
         <div class="cfg-stage glass">
@@ -380,11 +364,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
             <canvas id="cfgCanvas" aria-label="3D preview of the selected keycap" role="img"></canvas>
             <div class="nogl">3D preview unavailable in this browser. You can still pick a set and add it to your cart.</div>
           </div>
-          <div class="cfg-toggle">
-            <button class="chip" id="lightBtn" type="button" aria-pressed="false"><span class="dot"></span>Backlight</button>
-            <button class="chip" id="spinBtn" type="button" aria-pressed="true"><span class="dot"></span>Auto-spin</button>
-          </div>
-          <p class="cfg-hint mono">Drag to rotate · click the key to hear it</p>
+          <p class="cfg-hint mono">Drag to rotate</p>
         </div>
 
         <div class="cfg-panel glass">
@@ -398,7 +378,6 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
             <div class="cfg-row"><span class="cfg-label" id="sizeLabel">Size</span></div>
             <div class="opts" id="sizeGroup" role="radiogroup" aria-labelledby="sizeLabel"></div>
           </div>
-          <dl class="cfg-specs" id="cfgSpecs"></dl>
           <div class="cfg-buy">
             <div class="cfg-price"><span id="cfgPrice">€32</span><small>Free tracked shipping</small></div>
             <button class="btn btn-lime" id="addBtn" type="button">Add to cart</button>
@@ -406,123 +385,6 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
           <p class="added" id="addedNote" role="status" aria-live="polite"></p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- SPECS -->
-  <section class="sec" id="specs" aria-labelledby="specTitle" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="eyebrow">Features</p>
-          <h2 id="specTitle">The specs, minus the fluff</h2>
-        </div>
-        <p>Every set shares the same base: Cherry profile, an MX-style cross stem and PBT plastic. Tap through for the details.</p>
-      </div>
-      <div class="spec-grid">
-        <div class="spec-tabs" role="tablist" aria-label="Keycap features" aria-orientation="vertical">
-          <button class="spec-tab" role="tab" id="t-profile" aria-controls="p-profile" aria-selected="true"><span class="k">01</span><strong>Profile: Cherry</strong><span>Low and sculpted, row by row</span></button>
-          <button class="spec-tab" role="tab" id="t-stem" aria-controls="p-stem" aria-selected="false" tabindex="-1"><span class="k">02</span><strong>Stem: MX-compatible</strong><span>Cherry, Gateron, Kailh, Akko and more</span></button>
-          <button class="spec-tab" role="tab" id="t-material" aria-controls="p-material" aria-selected="false" tabindex="-1"><span class="k">03</span><strong>Material: PBT</strong><span>Matte, dense, holds its texture</span></button>
-          <button class="spec-tab" role="tab" id="t-sound" aria-controls="p-sound" aria-selected="false" tabindex="-1"><span class="k">04</span><strong>Sound signature</strong><span>Lower and rounder than ABS</span></button>
-        </div>
-        <div class="spec-view glass">
-          <div class="spec-panel" role="tabpanel" id="p-profile" aria-labelledby="t-profile">
-            <h3>Cherry profile</h3>
-            <p>Each row sits at a slightly different height and angle, so the board curves toward your fingers. It's lower than the OEM caps most keyboards ship with and far lower than SA, which most people find easier on long typing sessions.</p>
-            <figure class="spec-fig">
-              <svg viewBox="0 0 560 210" role="img" aria-label="Side view comparing SA, OEM and Cherry keycap heights">
-                <g font-family="JetBrains Mono, monospace" font-size="12" fill="#74767A">
-                  <text x="20" y="200">SA</text><text x="210" y="200">OEM</text><text x="400" y="200" fill="#F4F4F2">CHERRY · ours</text>
-                </g>
-                <line x1="0" y1="176" x2="560" y2="176" stroke="rgba(255,255,255,.12)"/>
-                <g fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5">
-                  <path d="M20 176 L34 66 Q80 56 126 66 L140 176 Z"/>
-                  <path d="M210 176 L222 100 Q270 92 318 100 L330 176 Z"/>
-                </g>
-                <path d="M400 176 L412 114 Q460 108 508 114 L520 176 Z" fill="rgba(255,255,255,.08)" stroke="#F4F4F2" stroke-width="1.8"/>
-              </svg>
-              <figcaption>Height comparison, home-row key. Shapes simplified.</figcaption>
-            </figure>
-          </div>
-          <div class="spec-panel" role="tabpanel" id="p-stem" aria-labelledby="t-stem" hidden>
-            <h3>MX-compatible cross stem</h3>
-            <p>The cross-shaped stem fits any switch with an MX-style "+" top: Cherry MX, Gateron, Kailh Box, Akko, Outemu and most hot-swap boards. Low-profile and Topre switches use different stems and won't fit.</p>
-            <figure class="spec-fig">
-              <svg viewBox="0 0 560 210" role="img" aria-label="Underside of a keycap showing the cross-shaped stem">
-                <rect x="180" y="20" width="200" height="170" rx="22" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
-                <rect x="205" y="45" width="150" height="120" rx="14" fill="none" stroke="rgba(255,255,255,.12)"/>
-                <circle cx="280" cy="105" r="30" fill="rgba(255,255,255,.05)" stroke="#A9ABAF" stroke-width="1.5"/>
-                <path d="M276 82 h8 v19 h19 v8 h-19 v19 h-8 v-19 h-19 v-8 h19 z" fill="#F4F4F2"/>
-                <g font-family="JetBrains Mono, monospace" font-size="12" fill="#A9ABAF">
-                  <text x="400" y="100">4.0 mm</text><text x="400" y="118" fill="#74767A">cross width</text>
-                  <line x1="312" y1="105" x2="392" y2="96" stroke="rgba(255,255,255,.2)"/>
-                </g>
-              </svg>
-              <figcaption>Keycap underside. Standard MX cross dimensions.</figcaption>
-            </figure>
-          </div>
-          <div class="spec-panel" role="tabpanel" id="p-material" aria-labelledby="t-material" hidden>
-            <h3>PBT, not ABS</h3>
-            <p>PBT is denser than the ABS plastic used for most stock keycaps. It keeps its matte texture instead of turning shiny where your fingers rest, and it doesn't yellow. Topo and Shadow print their legends on the front edge so backlighting shows through; Script uses dye-sublimation, where the ink sits inside the plastic.</p>
-            <figure class="spec-fig">
-              <svg viewBox="0 0 560 160" role="img" aria-label="Comparison bars: PBT versus ABS for shine resistance, density and yellowing">
-                <g font-family="Inter, sans-serif" font-size="13" fill="#A9ABAF">
-                  <text x="0" y="28">Shine resistance</text><text x="0" y="78">Density</text><text x="0" y="128">Resists yellowing</text>
-                </g>
-                <g>
-                  <rect x="170" y="14" width="340" height="10" rx="5" fill="#F4F4F2"/><rect x="170" y="30" width="140" height="6" rx="3" fill="rgba(255,255,255,.2)"/>
-                  <rect x="170" y="64" width="300" height="10" rx="5" fill="#F4F4F2"/><rect x="170" y="80" width="210" height="6" rx="3" fill="rgba(255,255,255,.2)"/>
-                  <rect x="170" y="114" width="330" height="10" rx="5" fill="#F4F4F2"/><rect x="170" y="130" width="120" height="6" rx="3" fill="rgba(255,255,255,.2)"/>
-                </g>
-              </svg>
-              <figcaption><span style="color:#F4F4F2">■</span> PBT &nbsp; <span style="color:#74767A">■</span> ABS. Relative, for illustration.</figcaption>
-            </figure>
-          </div>
-          <div class="spec-panel" role="tabpanel" id="p-sound" aria-labelledby="t-sound" hidden>
-            <h3>A lower, rounder sound</h3>
-            <p>Thicker, denser PBT damps the high "clack" of thin ABS and pushes the sound lower. How much depends on your switches, case and plate, so treat any keycap as one part of the sound, not all of it.</p>
-            <div style="margin-top:24px"><a class="btn btn-ghost" href="#sound">Try the sound test</a></div>
-            <figure class="spec-fig">
-              <svg viewBox="0 0 560 120" role="img" aria-label="Illustrative waveforms: ABS higher frequency, PBT lower frequency">
-                <path d="M0 40 Q10 10 20 40 T40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40 T240 40 T260 40" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
-                <path d="M0 90 Q25 50 50 90 T100 90 T150 90 T200 90 T250 90 T300 90 T350 90 T400 90 T450 90 T500 90 T550 90" fill="none" stroke="#F4F4F2" stroke-width="2"/>
-                <g font-family="JetBrains Mono, monospace" font-size="11" fill="#74767A"><text x="280" y="44">ABS</text><text x="480" y="116" fill="#F4F4F2">PBT</text></g>
-              </svg>
-              <figcaption>Illustration of pitch, not a measurement.</figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOUND TEST -->
-  <section class="sec" id="sound" aria-labelledby="soundTitle" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="eyebrow">Sound Test</p>
-          <h2 id="soundTitle">Tap to compare</h2>
-        </div>
-        <p>Pick a set, then tap its pad or type anywhere on your keyboard to hear it. Turn your volume down a little first.</p>
-      </div>
-      <div class="sound" id="soundPads"></div>
-      <p class="sound-note">These sounds are generated in your browser to show the difference in character between the sets, not recordings. On your board, the switches, plate and case shape the sound as much as the caps do.</p>
-    </div>
-  </section>
-
-  <!-- SETS -->
-  <section class="sec" id="sets" aria-labelledby="setsTitle" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="eyebrow">The sets</p>
-          <h2 id="setsTitle">Pick your vibe</h2>
-        </div>
-        <p>Click a set to load it in the configurator.</p>
-      </div>
-      <div class="sets" id="setCards"></div>
     </div>
   </section>
 
@@ -537,14 +399,15 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
         <p>Prices include shipping. Questions go to <a class="js-email" href="mailto:hello@klunkcaps.com" style="color:#fff">hello@klunkcaps.com</a>.</p>
       </div>
       <div class="info">
-        <div class="glass"><h3>Free tracked shipping</h3><p>Every order ships free with tracking. Most arrive in 7 to 14 days, and the tracking link lands in your inbox when yours ships.</p></div>
+        <div class="glass"><h3>Free tracked shipping</h3><p>Every order ships free with tracking to the EU and US. Most arrive in 1 to 2 weeks, and the tracking link lands in your inbox when yours ships.</p></div>
         <div class="glass" id="returns"><h3>14-day returns</h3><p>Changed your mind? Send unused keycaps back within 14 days of delivery for a full refund.</p></div>
         <div class="glass"><h3>Fit check</h3><p>Not sure a set fits your board? Email a photo of your keyboard and we'll tell you before you order.</p></div>
       </div>
       <div class="faq" id="faq">
-        <details><summary>Will these fit my keyboard?</summary><p>If your switches have a "+" shaped stem (Cherry MX, Gateron, Kailh, Akko and most hot-swap boards), yes. Shadow (137 keys) and Script (142) cover full-size boards with spares. Topo comes in 97 keys for compact boards or 133 for full size.</p></details>
-        <details><summary>What does shine-through mean?</summary><p>On Topo and Shadow the letters are printed on the front edge of each key in see-through material, so your keyboard's backlight glows through them. Switch on Backlight in the configurator to see it.</p></details>
+        <details><summary>Will these fit my keyboard?</summary><p>If your switches have a "+" shaped stem (Cherry MX, Gateron, Kailh, Akko and most hot-swap boards), yes. Phantom and Script cover full-size boards with spares. Topo comes in 97 keys for compact boards or 133 for full size.</p></details>
+        <details><summary>What does shine-through mean?</summary><p>On Topo and Phantom the letters are see-through, so your keyboard's backlight glows through them. Script's letters are dyed into the plastic, so they never wear off but don't light up.</p></details>
         <details><summary>How do I swap keycaps?</summary><p>Pull each key straight up with a keycap puller, then press the new one straight down until it sits flush. A full board takes about 15 minutes.</p></details>
+        <details><summary>Do you ship to my country?</summary><p>We ship free to every EU country and the US.</p></details>
         <details><summary>Is the 3D model exactly what I'll get?</summary><p>It's a close preview of the shape, colour and legend style. Use the product photos for exact print details, and check the colour you pick in good light.</p></details>
       </div>
     </div>
@@ -587,13 +450,9 @@ const STORE = { email: "hello@klunkcaps.com", currency: "EUR", locale: "en-IE", 
 const IMG = id => "https://ae-pic-a1.aliexpress-media.com/kf/" + id + "_960x960q75.jpg";
 const PHOTO = {
   topo: { "Matcha Green":"Sa9da428e0c954f8996a5a831684d92ddR", "Black":"Sc9470d7b5f1a49cab10993d3bb4375f2d", "White":"Sc4c59fca0a354ca5b86b1f6537adfb7eu", "Blackberry":"S22dc2f52fcca4f34a45bed8db17b230ef", "Polar Day":"Sa6be2f33a0f34ee4aacc0db7eb25d189R", "Sky Blue":"Sc2b52c34a4e344c58692a924498a5a6cY", "Lavender":"S7c400ddec95a4a8ab4449fb4ab2c06d6z", "Violet":"Sdbfd17b6617349238fcfdee636dc61d25", "Blush":"S206b550017ee46138b74600862a4ee1cU", "Lucky Red":"S48f4c2473ee1490abf64aaec3fc27f09O", "Red Bean":"S2c673b76a02744ed86bad193cd0f16fb5", "Green Vine":"S9fd5c19059f641e8aee8175cea2072e7q", "Red":"S3c9629e4c3194bb8b6cf1e65ef1631f6m", "Pink":"Se0bb4b2ff70142e18a2aa9d2a8db9f038", "Purple":"S597e4cf9fc394cd8866ba6998de881818", "Blue":"Sf8ed291715bd471b82ccfd691ba7efcfr", "Green":"S0ce35850ea9f44b28f0e25cb64609878T" },
-  shadow: { "White":"Saf982c1b8d3d4cb9bcd60f4911b3911c7", "Black":"Sf04103cc4aa34112b426353b0c264bf0G", "Grey":"S30b410e0ed2c4d6a92251ec547844d7eu", "Pink":"S5cce3fdf111c424ca35ebbe1c099e046v" },
+  phantom: { "Black":"Sc77e4e881df04cfcb9bd3c9db36082e8O", "Grey":"S5335a6982a4848ab9999a4414981ddfdx", "White":"S6466142dba804415a9b5c38396b02ea20", "Purple":"S7ebbe3b62c8b427c91a3e10355da55a9T", "Red":"S554c2cc8a210491f84602faf7bcf02bc2", "Green":"S491cd429c2f7487ab8b7ba16562bd301X", "Pink":"S654454275751458fbb7d47de5d329789S" },
   script: { "Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Katakana":"Sc4d2ac37414443a790e55ac0d92774b5W", "Cyrillic":"S77c7bd1c6e744fefa81fa70836d62ca2U", "Cyrillic, white":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
 };
-const GALLERY = [
-  ["shadow","S32e1e25bb4c7475f841169b9d6dd137bB"], ["script","S6bf2d1509ae44a6496434ea84c163f550"], ["topo","S9a317d0bd35f472098bce26df3ec522cD"],
-  ["shadow","Sfac6cf103d9f42a49132b2b419be5c1aq"], ["script","S08726d41b08d4a3d8d33764093da2a3dB"], ["shadow","S09e7c548509c4326848b67601609939cd"], ["script","S40ca95f281d4462989f228ad8b8c30998"]
-];
 const PRODUCTS = [
   {
     id: "topo", name: "Topo", optionLabel: "Colour",
@@ -623,15 +482,15 @@ const PRODUCTS = [
     specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Front, shine-through"],["Keys","97 or 133"]]
   },
   {
-    id: "shadow", name: "Shadow", optionLabel: "Colour", price: 45,
-    tag: "Clean, minimal keys with see-through edges. Light spills out around every key instead of through the top.",
-    image: IMG("S32e1e25bb4c7475f841169b9d6dd137bB.jpg"),
-    finish: { kind: "translucent", pattern: "none", sideLegend: true },
+    id: "phantom", name: "Phantom", optionLabel: "Colour", price: 45,
+    tag: "XVX double-shot PBT. Each key fades from deep colour to dark, with see-through letters on the top and side.",
+    image: IMG("Sb72f27057c414b81a89ba2d5b5b7a961X.jpg"),
+    finish: { kind: "pbt", pattern: "gradient", sideLegend: true },
     options: [
-      { name: "White", hex: "#F2F3F5" }, { name: "Grey", hex: "#9EA2AA" },
-      { name: "Black", hex: "#26282D" }, { name: "Pink", hex: "#F1BFCB" }
+      { name: "Black", hex: "#3A3D44" }, { name: "Grey", hex: "#8D929A" }, { name: "White", hex: "#ECEDEF" },
+      { name: "Purple", hex: "#7353B0" }, { name: "Red", hex: "#C04A3B" }, { name: "Green", hex: "#5D9A63" }, { name: "Pink", hex: "#E7A9BA" }
     ],
-    specs: [["Profile","Cherry"],["Material","PBT, translucent edges"],["Legends","Front, shine-through"],["Keys","137"]]
+    specs: [["Brand","XVX"],["Material","PBT, double-shot"],["Legends","Top and side, shine-through"],["Keys","Full set"]]
   },
   {
     id: "script", name: "Script", optionLabel: "Theme", price: 59,
@@ -663,7 +522,7 @@ $("#year").textContent = new Date().getFullYear();
 
 /* ===================== Sound (synthesised, only on user action) ===================== */
 let actx;
-const SOUND = { topo: { f: 150, click: 1800, decay: .14 }, shadow: { f: 230, click: 3200, decay: .1 }, script: { f: 130, click: 1500, decay: .16 } };
+const SOUND = { topo: { f: 150, click: 1800, decay: .14 }, phantom: { f: 190, click: 2600, decay: .12 }, script: { f: 130, click: 1500, decay: .16 } };
 function playKey(setId) {
   try {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
@@ -710,6 +569,12 @@ function topTexture(product, opt) {
         }
         ctx.stroke();
       }
+    } else if (product.finish.pattern === "gradient") {
+      const g = ctx.createLinearGradient(0, 0, 0, S);
+      g.addColorStop(0, shade(opt.hex, -.28)); g.addColorStop(1, opt.hex);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, S, S);
+      ctx.fillStyle = luminance(opt.hex) > .5 ? "rgba(30,32,38,.8)" : "rgba(245,245,245,.92)";
+      ctx.font = "600 130px 'Space Grotesk', Arial, sans-serif"; ctx.textBaseline = "top"; ctx.fillText("K", S * .2, S * .16);
     } else if (product.finish.pattern === "script") {
       ctx.fillStyle = "#3A3A3D";
       ctx.font = "600 150px 'Space Grotesk', Arial, sans-serif"; ctx.textBaseline = "top"; ctx.fillText("K", S * .2, S * .16);
@@ -878,7 +743,7 @@ function createViewer(canvas, stageEl, { follow = "window", drag = false, autoSp
 const hero = createViewer($("#heroCanvas"), $("#heroStage"), { follow: "window", scale: 1.05 });
 const heroTag = $(".stage-tag");
 let heroIdx = 0;
-const HERO_CYCLE = [["topo", "Matcha Green"], ["shadow", "Black"], ["script", "Katakana"], ["topo", "Blackberry"]];
+const HERO_CYCLE = [["topo", "Matcha Green"], ["phantom", "Purple"], ["script", "Katakana"], ["topo", "Blackberry"]];
 function heroShow([pid, oname]) {
   const p = PRODUCTS.find(x => x.id === pid), o = p.options.find(x => x.name === oname);
   hero && hero.setConfig(p, o, pid !== "script");
@@ -920,13 +785,8 @@ function renderCfg() {
   const ph = (PHOTO[p.id] || {})[opt.name], photo = $("#cfgPhoto"), wrapP = $("#cfgPhotoWrap");
   if (ph) { wrapP.classList.remove("no-img"); photo.src = IMG(ph + ".jpg").replace("960x960", "640x640"); photo.alt = `${p.name} in ${opt.name} on a full keyboard`; }
   $("#cfgPhotoLbl").textContent = `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
-  $("#cfgSpecs").innerHTML = p.specs.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
   $("#cfgPrice").textContent = money(priceOf(p, state.size));
-  const lightBtn = $("#lightBtn");
-  lightBtn.disabled = !p.finish.sideLegend && p.finish.kind !== "translucent";
-  lightBtn.title = lightBtn.disabled ? "Script's legends are dye-sublimated, not shine-through" : "";
-  if (lightBtn.disabled) state.light = false;
-  lightBtn.setAttribute("aria-pressed", state.light);
+  state.light = !!p.finish.sideLegend;
   cfgView && cfgView.setConfig(p, opt, state.light);
 }
 setTabs.addEventListener("click", e => { const b = e.target.closest("[data-pid]"); if (!b) return; state.pid = b.dataset.pid; state.opt = null; renderCfg(); });
@@ -938,67 +798,8 @@ setTabs.addEventListener("keydown", e => {
 });
 $("#optGroup").addEventListener("click", e => { const b = e.target.closest("[data-opt]"); if (!b) return; state.opt = b.dataset.opt; renderCfg(); });
 $("#sizeGroup").addEventListener("click", e => { const b = e.target.closest("[data-size]"); if (!b || b.getAttribute("aria-disabled") === "true") return; state.size = b.dataset.size; renderCfg(); });
-$("#lightBtn").addEventListener("click", () => { state.light = !state.light; renderCfg(); });
-$("#spinBtn").addEventListener("click", e => { const on = e.currentTarget.getAttribute("aria-pressed") !== "true"; e.currentTarget.setAttribute("aria-pressed", on); cfgView && cfgView.setSpin(on); });
-renderCfg();
-
-/* ===================== Sound pads ===================== */
-let soundSet = "topo";
-const pads = $("#soundPads");
-const PAD_COPY = { topo: "Deep and muted. Full PBT keeps it low.", shadow: "A touch brighter, with a crisper top end.", script: "The deepest of the three. Round and soft." };
-pads.innerHTML = PRODUCTS.map(p => `<button type="button" class="pad" data-pid="${p.id}" aria-pressed="${p.id === soundSet}">
-  <h3>${p.name}</h3><p>${PAD_COPY[p.id]}</p><span class="wave" aria-hidden="true">${"<i></i>".repeat(28)}</span></button>`).join("");
-function hitPad(pid) {
-  const el = pads.querySelector(`[data-pid="${pid}"]`); playKey(pid);
-  el.classList.add("hit");
-  el.querySelectorAll("i").forEach((i, n) => { i.style.height = (20 + Math.abs(Math.sin(n * (pid === "shadow" ? 1.3 : .7))) * 80) + "%"; });
-  clearTimeout(el._t); el._t = setTimeout(() => { el.classList.remove("hit"); el.querySelectorAll("i").forEach(i => i.style.height = ""); }, 160);
-}
-pads.addEventListener("click", e => {
-  const b = e.target.closest("[data-pid]"); if (!b) return;
-  soundSet = b.dataset.pid; pads.querySelectorAll("[data-pid]").forEach(x => x.setAttribute("aria-pressed", x.dataset.pid === soundSet));
-  hitPad(soundSet);
-});
-let soundVisible = false;
-new IntersectionObserver(([e]) => { soundVisible = e.isIntersecting; }, { threshold: .3 }).observe($("#sound"));
-const held = new Set();
-document.addEventListener("keydown", e => {
-  if (!soundVisible || e.metaKey || e.ctrlKey || e.altKey || e.key.length !== 1) return;
-  if (e.target.closest("input, textarea, select, button, a, [contenteditable]")) return;
-  if (held.has(e.code)) return; held.add(e.code); hitPad(soundSet);
-});
-document.addEventListener("keyup", e => held.delete(e.code));
-
-/* ===================== Spec tabs ===================== */
-const specTabs = [...document.querySelectorAll(".spec-tab")];
-function selectSpec(tab) {
-  specTabs.forEach(t => { const on = t === tab; t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1; $("#" + t.getAttribute("aria-controls")).hidden = !on; });
-}
-specTabs.forEach((t, i) => {
-  t.addEventListener("click", () => selectSpec(t));
-  t.addEventListener("keydown", e => {
-    if (!["ArrowDown", "ArrowUp"].includes(e.key)) return; e.preventDefault();
-    const n = specTabs[(i + (e.key === "ArrowDown" ? 1 : -1) + specTabs.length) % specTabs.length]; selectSpec(n); n.focus();
-  });
-});
-
-/* ===================== Gallery ===================== */
-$("#gallery").innerHTML = GALLERY.map(([pid, id]) => { const p = PRODUCTS.find(x => x.id === pid); return `<button type="button" class="shot" data-pid="${pid}" data-name="${p.name}" aria-label="Load ${p.name} in the configurator">
-  <img src="${IMG(id + ".jpg")}" alt="${p.name} keycaps on a full mechanical keyboard" loading="lazy" referrerpolicy="no-referrer"><span class="lbl">${p.name.toUpperCase()}</span></button>`; }).join("");
-document.querySelectorAll(".shot img").forEach(img => { const f = () => img.parentElement.classList.add("no-img"); img.addEventListener("error", f); if (img.complete && img.naturalWidth === 0) f(); });
-$("#gallery").addEventListener("click", e => { const b = e.target.closest("[data-pid]"); if (!b) return; state.pid = b.dataset.pid; state.opt = null; renderCfg(); $("#configurator").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); });
 $("#cfgPhoto").addEventListener("error", () => $("#cfgPhotoWrap").classList.add("no-img"));
-
-/* ===================== Set cards ===================== */
-$("#setCards").innerHTML = PRODUCTS.map(p => `<a class="card" href="#configurator" data-pid="${p.id}">
-  <div class="card-img" data-name="${p.name}"><img src="${p.image}" alt="${p.name} keycap set" loading="lazy" referrerpolicy="no-referrer" width="960" height="720"></div>
-  <div class="card-body"><div class="card-top"><h3>${p.name}</h3><span class="price">${p.sizes ? "from " : ""}${money(minPrice(p))}</span></div>
-  <p>${p.tag}</p><span class="meta">${p.options.length} ${p.optionLabel === "Theme" ? "themes" : "colours"} · ${p.specs.find(s => s[0] === "Keys")[1]} keys</span></div></a>`).join("");
-document.querySelectorAll(".card-img img").forEach(img => {
-  const fail = () => img.parentElement.classList.add("no-img");
-  img.addEventListener("error", fail); if (img.complete && img.naturalWidth === 0) fail();
-});
-$("#setCards").addEventListener("click", e => { const c = e.target.closest("[data-pid]"); if (!c) return; state.pid = c.dataset.pid; state.opt = null; renderCfg(); });
+renderCfg();
 
 /* ===================== Cart ===================== */
 let cart = store.get("klunk-cart-v2", []);
@@ -1012,6 +813,7 @@ $("#addBtn").addEventListener("click", () => {
   saveCart(); playKey(p.id);
   const n = $("#addedNote"); n.textContent = `Added ${p.name}, ${optText(line)}.`;
   clearTimeout(n._t); n._t = setTimeout(() => n.textContent = "", 3500);
+  openCart();
 });
 function saveCart() { store.set("klunk-cart-v2", cart); renderCart(); }
 function renderCart() {
@@ -1020,7 +822,7 @@ function renderCart() {
   $("#cartCount").textContent = count; $("#cartBtn").setAttribute("aria-label", `Cart, ${count} item${count === 1 ? "" : "s"}`);
   const body = $("#cartBody");
   if (!cart.length) {
-    body.innerHTML = `<div class="empty"><p>Your cart is empty. Build a set in the configurator to get started.</p><a class="btn btn-ghost btn-sm" href="#configurator" id="emptyGo">Open the configurator</a></div>`;
+    body.innerHTML = `<div class="empty"><p>Your cart is empty. Pick a set to get started.</p><a class="btn btn-ghost btn-sm" href="#configurator" id="emptyGo">Go to the shop</a></div>`;
     $("#cartFoot").hidden = true; $("#emptyGo").addEventListener("click", closeCart); return;
   }
   $("#cartFoot").hidden = false;
