@@ -450,7 +450,7 @@ const STORE = { email: "hello@klunkcaps.com", currency: "EUR", locale: "en-IE", 
 const IMG = id => "https://ae-pic-a1.aliexpress-media.com/kf/" + id + "_960x960q75.jpg";
 const PHOTO = {
   topo: { "Matcha Green":"Sa9da428e0c954f8996a5a831684d92ddR", "Black":"Sc9470d7b5f1a49cab10993d3bb4375f2d", "White":"Sc4c59fca0a354ca5b86b1f6537adfb7eu", "Blackberry":"S22dc2f52fcca4f34a45bed8db17b230ef", "Polar Day":"Sa6be2f33a0f34ee4aacc0db7eb25d189R", "Sky Blue":"Sc2b52c34a4e344c58692a924498a5a6cY", "Lavender":"S7c400ddec95a4a8ab4449fb4ab2c06d6z", "Violet":"Sdbfd17b6617349238fcfdee636dc61d25", "Blush":"S206b550017ee46138b74600862a4ee1cU", "Lucky Red":"S48f4c2473ee1490abf64aaec3fc27f09O", "Red Bean":"S2c673b76a02744ed86bad193cd0f16fb5", "Green Vine":"S9fd5c19059f641e8aee8175cea2072e7q", "Red":"S3c9629e4c3194bb8b6cf1e65ef1631f6m", "Pink":"Se0bb4b2ff70142e18a2aa9d2a8db9f038", "Purple":"S597e4cf9fc394cd8866ba6998de881818", "Blue":"Sf8ed291715bd471b82ccfd691ba7efcfr", "Green":"S0ce35850ea9f44b28f0e25cb64609878T" },
-  phantom: { "Black":"Sb72f27057c414b81a89ba2d5b5b7a961X", "Grey":"Sb72f27057c414b81a89ba2d5b5b7a961X", "White":"Sb72f27057c414b81a89ba2d5b5b7a961X", "Purple":"Sb72f27057c414b81a89ba2d5b5b7a961X", "Red":"Sb72f27057c414b81a89ba2d5b5b7a961X", "Green":"Sb72f27057c414b81a89ba2d5b5b7a961X", "Pink":"Sb72f27057c414b81a89ba2d5b5b7a961X" },
+  phantom: { "Black":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Grey":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "White":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Purple":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Red":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Green":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Pink":"Sb72f27057c414b81a89ba2d5b5b7a961X.png" },
   script: { "Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Katakana":"Sc4d2ac37414443a790e55ac0d92774b5W", "Cyrillic":"S77c7bd1c6e744fefa81fa70836d62ca2U", "Cyrillic, white":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
 };
 const PRODUCTS = [
@@ -484,7 +484,7 @@ const PRODUCTS = [
   {
     id: "phantom", name: "Phantom", optionLabel: "Colour", price: 45,
     tag: "XVX double-shot PBT. Each key fades from deep colour to dark, with see-through letters on the top and side.",
-    image: IMG("Sb72f27057c414b81a89ba2d5b5b7a961X.jpg"),
+    image: IMG("Sb72f27057c414b81a89ba2d5b5b7a961X.png"),
     finish: { kind: "pbt", pattern: "gradient", sideLegend: true },
     options: [
       { name: "Black", hex: "#3A3D44" }, { name: "Grey", hex: "#8D929A" }, { name: "White", hex: "#ECEDEF" },
@@ -783,7 +783,7 @@ function renderCfg() {
     }).join("");
   } else { sizeWrap.hidden = true; state.size = null; }
   const ph = (PHOTO[p.id] || {})[opt.name], photo = $("#cfgPhoto"), wrapP = $("#cfgPhotoWrap");
-  if (ph) { wrapP.classList.remove("no-img"); photo.src = IMG(ph + ".jpg").replace("960x960", "640x640"); photo.alt = `${p.name} in ${opt.name} on a full keyboard`; }
+  if (ph) { wrapP.classList.remove("no-img"); photo.src = IMG(ph.includes(".") ? ph : ph + ".jpg").replace("960x960", "640x640"); photo.alt = `${p.name} in ${opt.name} on a full keyboard`; }
   $("#cfgPhotoLbl").textContent = p.id === "phantom" ? "PHANTOM · 4 OF 7 COLOURS" : `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
   $("#cfgPrice").textContent = money(priceOf(p, state.size));
   state.light = !!p.finish.sideLegend;
