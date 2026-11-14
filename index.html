@@ -296,6 +296,31 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+/* Featured: Script */
+.feat{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.feat-photo{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);background:var(--bg-2)}
+.feat-photo img{width:100%;height:100%;object-fit:cover}
+.feat-photo .lbl{position:absolute;left:0;top:0;padding:7px 10px;background:#F4F4F2;color:#141517;font:600 .7rem/1 var(--f-mono)}
+.feat-photo.no-img img{visibility:hidden}
+.feat-photo.no-img::after{content:"Photo loads on klunkcaps.com";position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:.8rem;background:repeating-linear-gradient(45deg,#1E1F22 0 10px,#222326 10px 20px)}
+.feat h2{font-size:var(--s-3);margin-bottom:16px}
+.feat-lede{color:var(--muted);max-width:44ch;margin-bottom:24px}
+.feat-list{list-style:none;padding:0;margin:0 0 28px;border-top:1px solid var(--line)}
+.feat-list li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;font-size:var(--s--1)}
+.feat-list li span{color:var(--dim)}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px}
+.theme{position:relative;aspect-ratio:1;border:1px solid var(--line);background:var(--bg-2);padding:0;cursor:pointer;overflow:hidden}
+.theme img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.theme:hover img{transform:scale(1.05)}
+.theme span{position:absolute;left:0;right:0;bottom:0;padding:5px 6px;background:rgba(20,21,23,.85);font:500 .68rem/1.2 var(--f-mono);color:var(--text);text-align:left}
+.theme.no-img img{visibility:hidden}
+.theme:focus-visible{outline:2px solid #F4F4F2;outline-offset:2px}
+.feat-buy{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.feat-buy strong{font:600 var(--s-2)/1 var(--f-head)}
+.feat-buy small{display:block;color:var(--dim);font-size:.72rem;margin-top:4px}
+.set-tab .pick{display:inline-block;margin-left:6px;padding:2px 5px;font:600 .58rem/1 var(--f-mono);border:1px solid currentColor;vertical-align:2px}
+@media (max-width:900px){.feat{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -308,6 +333,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
       <span class="logo-word" aria-hidden="true">KLUNK<span> CAPS</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
+      <a href="#script">Script</a>
       <a href="#configurator">Shop</a>
       <a href="#shipping">Shipping</a>
       <a href="#faq">FAQ</a>
@@ -323,11 +349,12 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow enter" style="--d:.05s">PBT keycap sets · Fits MX switches</p>
+        <p class="eyebrow enter" style="--d:.05s">Top pick: Script retro keycaps</p>
         <h1 class="enter" style="--d:.12s">Your setup, but <em>premium</em>.</h1>
-        <p class="hero-lede enter" style="--d:.2s" id="heroLede">Three keycap sets, 30 colourways. Pick one, we ship it free, you swap it in 15 minutes.</p>
+        <p class="hero-lede enter" style="--d:.2s" id="heroLede">Meet Script: retro keycaps with a second alphabet on every key, dyed in so it never wears off. Free shipping, 15 minutes to swap.</p>
         <div class="hero-ctas enter" style="--d:.28s">
-          <a class="btn btn-primary" href="#configurator">Shop the sets</a>
+          <a class="btn btn-primary" href="#script">Shop Script</a>
+          <a class="btn btn-ghost" href="#configurator">See all sets</a>
         </div>
         <div class="hero-facts enter" style="--d:.36s">
           <div><strong>From €25</strong>per full set</div>
@@ -343,6 +370,28 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
         <canvas id="heroCanvas" aria-label="A 3D keycap that tilts toward your cursor" role="img"></canvas>
         <div class="stage-tag glass mono" aria-hidden="true">TOPO · <b>Matcha Green</b></div>
         <div class="nogl">Your browser couldn't start 3D, so here's the short version: Topo, Phantom and Script, all PBT, all MX fit.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED: SCRIPT -->
+  <section class="sec" id="script" aria-labelledby="scriptTitle" style="padding-bottom:0">
+    <div class="wrap feat">
+      <figure class="feat-photo"><img src="https://ae-pic-a1.aliexpress-media.com/kf/S6bf2d1509ae44a6496434ea84c163f550.jpg_960x960q75.jpg" alt="Script keycaps on a full mechanical keyboard" loading="lazy" referrerpolicy="no-referrer"><span class="lbl">OUR TOP PICK</span></figure>
+      <div>
+        <p class="eyebrow">Featured set</p>
+        <h2 id="scriptTitle">Script. The best keys we sell.</h2>
+        <p class="feat-lede">Retro cream and grey keys with a second alphabet on every cap. The letters are dyed into the plastic, so they never fade or rub off.</p>
+        <ul class="feat-list">
+          <li>Legends <span>Dye-sublimated, won't wear off</span></li>
+          <li>Keys <span>142, fits full size and compact boards</span></li>
+          <li>Material <span>Thick PBT, deep sound</span></li>
+        </ul>
+        <div class="themes" id="themes"></div>
+        <div class="feat-buy">
+          <div><strong>€59</strong><small>Free tracked shipping</small></div>
+          <a class="btn btn-primary" href="#configurator" id="featGo">Choose your theme</a>
+        </div>
       </div>
     </div>
   </section>
@@ -455,6 +504,19 @@ const PHOTO = {
 };
 const PRODUCTS = [
   {
+    id: "script", name: "Script", optionLabel: "Theme", price: 59,
+    tag: "Retro cream and grey keys with dye-sublimated legends that won't wear off. Pick a second alphabet or another theme.",
+    image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
+    finish: { kind: "pbt", pattern: "script", sideLegend: false },
+    options: [
+      { name: "Katakana", hex: "#E7E1D2", sub: "キ" }, { name: "Greek", hex: "#E7E1D2", sub: "Κ" },
+      { name: "Cyrillic", hex: "#E7E1D2", sub: "К" }, { name: "Cyrillic, white", hex: "#F3F2EE", sub: "К" },
+      { name: "Handmade", hex: "#E7E1D2", sub: "✱" }, { name: "Spirit", hex: "#E7E1D2", sub: "◐" },
+      { name: "Fate", hex: "#E7E1D2", sub: "✦" }
+    ],
+    specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Dye-sublimated"],["Keys","142"]]
+  },
+  {
     id: "topo", name: "Topo", optionLabel: "Colour",
     tag: "A topographic map pattern with legends printed on the front edge, so your backlight glows through.",
     image: IMG("S9a317d0bd35f472098bce26df3ec522cD.jpg"),
@@ -491,20 +553,8 @@ const PRODUCTS = [
       { name: "Purple", hex: "#7353B0" }, { name: "Red", hex: "#C04A3B" }, { name: "Green", hex: "#5D9A63" }, { name: "Pink", hex: "#E7A9BA" }
     ],
     specs: [["Brand","XVX"],["Material","PBT, double-shot"],["Legends","Top and side, shine-through"],["Keys","Full set"]]
-  },
-  {
-    id: "script", name: "Script", optionLabel: "Theme", price: 59,
-    tag: "Retro cream and grey keys with dye-sublimated legends that won't wear off. Pick a second alphabet or another theme.",
-    image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
-    finish: { kind: "pbt", pattern: "script", sideLegend: false },
-    options: [
-      { name: "Katakana", hex: "#E7E1D2", sub: "キ" }, { name: "Greek", hex: "#E7E1D2", sub: "Κ" },
-      { name: "Cyrillic", hex: "#E7E1D2", sub: "К" }, { name: "Cyrillic, white", hex: "#F3F2EE", sub: "К" },
-      { name: "Handmade", hex: "#E7E1D2", sub: "✱" }, { name: "Spirit", hex: "#E7E1D2", sub: "◐" },
-      { name: "Fate", hex: "#E7E1D2", sub: "✦" }
-    ],
-    specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Dye-sublimated"],["Keys","142"]]
   }
+
 ];
 
 /* ===================== Helpers ===================== */
@@ -743,7 +793,7 @@ function createViewer(canvas, stageEl, { follow = "window", drag = false, autoSp
 const hero = createViewer($("#heroCanvas"), $("#heroStage"), { follow: "window", scale: 1.05 });
 const heroTag = $(".stage-tag");
 let heroIdx = 0;
-const HERO_CYCLE = [["topo", "Matcha Green"], ["phantom", "Purple"], ["script", "Katakana"], ["topo", "Blackberry"]];
+const HERO_CYCLE = [["script", "Katakana"], ["script", "Greek"], ["phantom", "Purple"], ["script", "Cyrillic"], ["topo", "Matcha Green"]];
 function heroShow([pid, oname]) {
   const p = PRODUCTS.find(x => x.id === pid), o = p.options.find(x => x.name === oname);
   hero && hero.setConfig(p, o, pid !== "script");
@@ -754,9 +804,9 @@ if (!reduceMotion) setInterval(() => { if (document.hidden) return; heroIdx = (h
 
 /* ===================== Configurator ===================== */
 const cfgView = createViewer($("#cfgCanvas"), $("#cfgStage"), { follow: "stage", drag: true, autoSpin: true, scale: 1.05 });
-const state = { pid: "topo", opt: "Matcha Green", size: "133", light: false };
+const state = { pid: "script", opt: "Katakana", size: "133", light: false };
 const setTabs = $("#setTabs");
-setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}</button>`).join("");
+setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">TOP</span>' : ""}</button>`).join("");
 
 function renderCfg() {
   const p = PRODUCTS.find(x => x.id === state.pid);
@@ -800,6 +850,14 @@ $("#optGroup").addEventListener("click", e => { const b = e.target.closest("[dat
 $("#sizeGroup").addEventListener("click", e => { const b = e.target.closest("[data-size]"); if (!b || b.getAttribute("aria-disabled") === "true") return; state.size = b.dataset.size; renderCfg(); });
 $("#cfgPhoto").addEventListener("error", () => $("#cfgPhotoWrap").classList.add("no-img"));
 renderCfg();
+
+/* ===================== Featured Script themes ===================== */
+const FEAT_THEMES = ["Katakana", "Greek", "Cyrillic", "Handmade"];
+$("#themes").innerHTML = FEAT_THEMES.map(t => `<button type="button" class="theme" data-theme="${t}" aria-label="Choose Script in ${t}"><img src="${IMG(PHOTO.script[t] + ".jpg").replace("960x960", "240x240")}" alt="" loading="lazy" referrerpolicy="no-referrer"><span>${t}</span></button>`).join("");
+const goScript = t => { state.pid = "script"; state.opt = t; renderCfg(); $("#configurator").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); };
+$("#themes").addEventListener("click", e => { const b = e.target.closest("[data-theme]"); if (b) goScript(b.dataset.theme); });
+$("#featGo").addEventListener("click", e => { e.preventDefault(); goScript(state.pid === "script" ? state.opt : "Katakana"); });
+document.querySelectorAll(".feat-photo img, .theme img").forEach(img => { const f = () => img.parentElement.classList.add("no-img"); img.addEventListener("error", f); if (img.complete && img.naturalWidth === 0) f(); });
 
 /* ===================== Cart ===================== */
 let cart = store.get("klunk-cart-v2", []);
