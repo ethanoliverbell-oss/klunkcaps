@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klunk Caps | Keycap sets: Topo, Shadow and Script</title>
+<meta name="description" content="Three PBT keycap sets in 28 designs. Cherry profile, fits most mechanical keyboards, free tracked shipping.">
+<meta property="og:title" content="Klunk Caps">
+<meta property="og:description" content="Same keyboard, whole new look. PBT keycap sets with free tracked shipping.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://klunkcaps.com">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%223.4%22%20stroke-linejoin%3D%22miter%22%20stroke-linecap%3D%22square%22%3E%3Cpath%20d%3D%22M30%203%20L38%207%20L41%2014%20L50%2017%20L41%2020%20L44%2033%20L44%2046%20L39%2056%20L45%2061%20L21%2061%20L23%2056%20L18%2046%20L18%2030%20L22%2012%20Z%22/%3E%3Cpath%20d%3D%22M41%2020%20L37%2031%20L38%2045%20L34%2056%22/%3E%3Cpath%20d%3D%22M24%2026%20L32%2049%20L25%2045%20Z%22/%3E%3Cpath%20d%3D%22M34%209%20L36%2011%20L34%2013%20L32%2011%20Z%22%20fill%3D%22%23000%22%20stroke-width%3D%221%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --concrete:#EFEFEF;   /* poured-concrete grey */
+  --stone:#D4D4D4;      /* hairlines */
+  --slate:#8C8C8C;
+  --graphite:#4A4A4A;   /* secondary text */
+  --black:#000000;      /* steel frames */
+  --frame:8px;
+  --font:"Instrument Sans", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --step--1:clamp(.84rem,.82rem + .1vw,.9rem);
+  --step-0:clamp(1rem,.97rem + .15vw,1.0625rem);
+  --step-1:clamp(1.15rem,1.1rem + .3vw,1.35rem);
+  --step-2:clamp(1.5rem,1.3rem + 1vw,2.1rem);
+  --step-3:clamp(2rem,1.5rem + 2.4vw,3.4rem);
+  --step-4:clamp(2.6rem,1.4rem + 5.4vw,6.4rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--white);color:var(--black);font-family:var(--font);font-size:var(--step-0);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:400;letter-spacing:-.025em;line-height:1}
+p{margin:0}
+:focus-visible{outline:2px solid var(--black);outline-offset:3px}
+.wrap{width:min(1320px,100%);margin-inline:auto;padding-inline:clamp(20px,4vw,48px)}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Buttons: flat steel and glass, square corners */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 1.6em;border:1px solid var(--black);background:var(--black);color:var(--white);font:500 var(--step-0)/1 var(--font);text-decoration:none;cursor:pointer;border-radius:0;transition:background .15s,color .15s}
+.btn:hover{background:var(--white);color:var(--black)}
+.btn-line{background:transparent;color:var(--black)}
+.btn-line:hover{background:var(--black);color:var(--white)}
+.btn-sm{min-height:40px;padding:0 1.1em;font-size:var(--step--1)}
+
+/* ---------- Header ---------- */
+.bar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--black)}
+.bar .wrap{display:flex;align-items:center;gap:32px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand svg{width:30px;height:30px;flex:none}
+.brand-word{font-weight:600;letter-spacing:.14em;font-size:.95rem}
+.brand-word span{font-weight:400}
+.bar nav{display:flex;gap:28px}
+.bar nav a,.cart-link{text-decoration:none;font-size:var(--step--1);color:var(--graphite)}
+.bar nav a:hover,.cart-link:hover{color:var(--black)}
+.cart-link{background:none;border:0;font-family:inherit;cursor:pointer;padding:8px 0;color:var(--black);font-weight:500}
+@media (max-width:860px){.bar nav{display:none}}
+
+/* ---------- Hero: a glass facade with three panes ---------- */
+.hero{padding-top:clamp(48px,7vw,104px)}
+.hero-top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px clamp(32px,6vw,96px);align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.hero h1{font-size:var(--step-4);max-width:12ch}
+.hero-side p{color:var(--graphite);max-width:38ch;margin-bottom:28px}
+@media (max-width:820px){.hero-top{grid-template-columns:1fr}}
+
+.facade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--frame);background:var(--black);border:var(--frame) solid var(--black)}
+.pane{position:relative;display:flex;flex-direction:column;background:var(--white);text-decoration:none;overflow:hidden}
+.pane-glass{position:relative;aspect-ratio:3/4;background:var(--concrete);overflow:hidden}
+.pane-glass img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.pane-glass::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 38%);pointer-events:none}
+.pane:hover .pane-glass img,.pane:focus-visible .pane-glass img{transform:scale(1.03)}
+.pane-plate{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 18px 18px;border-top:var(--frame) solid var(--black)}
+.pane-name{font-size:var(--step-1);font-weight:500;letter-spacing:-.01em}
+.pane-price{color:var(--graphite);font-size:var(--step--1);font-variant-numeric:tabular-nums}
+.no-img img{visibility:hidden}
+.no-img::before{content:attr(data-initial);position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(3rem,8vw,7rem);font-weight:400;color:var(--stone)}
+@media (max-width:760px){
+  .facade{grid-template-columns:1fr}
+  .pane-glass{aspect-ratio:4/3}
+}
+@media (prefers-reduced-motion:no-preference){
+  .pane-glass{animation:blind .9s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 120ms + 150ms)}
+  @keyframes blind{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+}
+
+/* Concrete plinth under the facade */
+.plinth{background:var(--concrete);border-bottom:1px solid var(--stone)}
+.plinth ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.plinth li{padding:22px 0 22px 24px;border-left:1px solid var(--stone);font-size:var(--step--1);color:var(--graphite)}
+.plinth li:first-child{border-left:0;padding-left:0}
+.plinth strong{display:block;color:var(--black);font-weight:500;font-size:var(--step-0);margin-bottom:2px}
+@media (max-width:760px){.plinth ul{grid-template-columns:1fr}.plinth li{border-left:0;border-top:1px solid var(--stone);padding-left:0}.plinth li:first-child{border-top:0}}
+
+/* ---------- Sets ---------- */
+.sets{padding:clamp(72px,10vw,140px) 0 clamp(40px,6vw,80px)}
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px clamp(32px,6vw,96px);align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.section-head h2{font-size:var(--step-3)}
+.section-head p{color:var(--graphite);max-width:44ch}
+@media (max-width:760px){.section-head{grid-template-columns:1fr}}
+
+.set{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:start;padding:clamp(40px,5vw,64px) 0;border-top:1px solid var(--black)}
+.set:nth-of-type(even) .set-media{order:2}
+.set-media{position:relative;aspect-ratio:1/1;background:var(--concrete);overflow:hidden}
+.set-media img{width:100%;height:100%;object-fit:cover}
+.set-info{position:sticky;top:100px}
+.set-name{font-size:var(--step-3);margin-bottom:16px}
+.set-tagline{color:var(--graphite);max-width:40ch;margin-bottom:28px}
+.set-price{font-size:var(--step-2);letter-spacing:-.02em;margin-bottom:32px;font-variant-numeric:tabular-nums}
+.set-price small{font-size:var(--step--1);color:var(--slate);margin-left:.5em;letter-spacing:0}
+.field{margin-bottom:28px}
+.field-label{font-size:var(--step--1);margin-bottom:12px;color:var(--graphite)}
+.field-label output{color:var(--black);font-weight:500;margin-left:.35em}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.swatch{width:30px;height:30px;padding:0;border:1px solid rgba(0,0,0,.18);background:var(--sw);cursor:pointer;border-radius:0}
+.swatch[aria-checked="true"]{outline:2px solid var(--black);outline-offset:3px}
+.opt{min-height:40px;padding:0 1em;border:1px solid var(--stone);background:var(--white);font:inherit;font-size:var(--step--1);cursor:pointer;border-radius:0}
+.opt:hover{border-color:var(--black)}
+.opt[aria-checked="true"]{background:var(--black);border-color:var(--black);color:var(--white)}
+.opt[aria-disabled="true"]{color:var(--slate);border-style:dashed;cursor:not-allowed}
+.add-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:8px 0 36px}
+.add-row .btn{min-width:15em}
+.added-note{color:var(--graphite);font-size:var(--step--1);min-height:1.2em}
+.specs{display:grid;grid-template-columns:auto 1fr;margin:0;font-size:var(--step--1)}
+.specs dt,.specs dd{padding:11px 0;border-top:1px solid var(--stone)}
+.specs dt{color:var(--slate);padding-right:28px}
+.specs dd{margin:0}
+@media (max-width:900px){
+  .set{grid-template-columns:1fr}
+  .set:nth-of-type(even) .set-media{order:0}
+  .set-info{position:static}
+}
+
+/* ---------- Fit guide: the black volume ---------- */
+.fit{background:var(--black);color:var(--white);padding:clamp(72px,10vw,140px) 0}
+.fit-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(40px,6vw,96px);align-items:center;margin-bottom:clamp(56px,7vw,96px)}
+.fit h2{font-size:var(--step-3);margin-bottom:22px}
+.fit-top p{color:#BDBDBD;max-width:44ch}
+.profile svg{width:100%;height:auto;display:block}
+.profile figcaption{color:var(--slate);font-size:var(--step--1);margin-top:16px;max-width:52ch}
+.fit-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #333}
+.fit-facts > div{padding:28px 28px 0 0}
+.fit-facts > div + div{padding-left:28px;border-left:1px solid #333}
+.fit-facts h3{font-size:var(--step-1);font-weight:500;letter-spacing:-.01em;margin-bottom:10px}
+.fit-facts p{color:#BDBDBD}
+.fit-facts a{color:var(--white)}
+.fit :focus-visible{outline-color:var(--white)}
+@media (max-width:820px){.fit-top{grid-template-columns:1fr}.fit-facts{grid-template-columns:1fr}.fit-facts > div + div{padding-left:0;border-left:0;border-top:1px solid #333;margin-top:28px}}
+
+/* ---------- Shipping and FAQ ---------- */
+.info{padding:clamp(72px,10vw,140px) 0}
+.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--black)}
+.info-grid > div{padding:28px 28px 0 0}
+.info-grid > div + div{padding-left:28px;border-left:1px solid var(--stone)}
+.info-grid h3{font-size:var(--step-1);font-weight:500;letter-spacing:-.01em;margin-bottom:10px}
+.info-grid p{color:var(--graphite)}
+@media (max-width:820px){.info-grid{grid-template-columns:1fr}.info-grid > div + div{padding-left:0;border-left:0;border-top:1px solid var(--stone);margin-top:28px}}
+.faq{padding-bottom:clamp(72px,10vw,140px)}
+.faq-list{max-width:820px;border-top:1px solid var(--black)}
+.faq details{border-bottom:1px solid var(--stone)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 48px 24px 0;font-size:var(--step-1);position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:4px;top:50%;width:14px;height:14px;transform:translateY(-50%);background:linear-gradient(var(--black),var(--black)) center/14px 1.5px no-repeat,linear-gradient(var(--black),var(--black)) center/1.5px 14px no-repeat}
+.faq details[open] summary::after{background:linear-gradient(var(--black),var(--black)) center/14px 1.5px no-repeat}
+.faq details p{padding:0 0 26px;color:var(--graphite);max-width:62ch}
+
+/* ---------- Footer ---------- */
+footer{background:var(--black);color:#BDBDBD;padding:56px 0 64px;font-size:var(--step--1)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between}
+footer .brand{margin-right:0;color:var(--white)}
+footer nav{display:flex;flex-wrap:wrap;gap:12px 28px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--white)}
+footer :focus-visible{outline-color:var(--white)}
+
+/* ---------- Cart drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(460px,100%);background:var(--white);z-index:70;display:flex;flex-direction:column;border-left:1px solid var(--black);transform:translateX(100%);visibility:hidden;transition:transform .28s cubic-bezier(.2,.8,.2,1),visibility 0s linear .28s}
+body.cart-open .scrim{opacity:1;pointer-events:auto}
+body.cart-open .drawer{transform:none;visibility:visible;transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:68px;border-bottom:1px solid var(--black)}
+.drawer-head h2{font-size:var(--step-1);font-weight:500;letter-spacing:-.01em}
+.close{background:none;border:0;font:inherit;font-size:var(--step--1);cursor:pointer;text-decoration:underline;padding:8px 0}
+.drawer-body{flex:1;overflow:auto;padding:0 24px}
+.line{display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:start;padding:20px 0;border-bottom:1px solid var(--stone)}
+.line img,.line .thumb{width:72px;height:72px;object-fit:cover;background:var(--concrete)}
+.line-name{font-weight:500}
+.line-opt{color:var(--graphite);font-size:var(--step--1)}
+.qty{display:inline-flex;align-items:center;margin-top:10px;border:1px solid var(--stone)}
+.qty button{width:32px;height:32px;border:0;background:none;font:inherit;cursor:pointer}
+.qty button:hover{background:var(--concrete)}
+.qty span{min-width:2em;text-align:center;font-variant-numeric:tabular-nums;font-size:var(--step--1)}
+.line-price{font-variant-numeric:tabular-nums;text-align:right}
+.remove{background:none;border:0;color:var(--slate);font:inherit;font-size:var(--step--1);cursor:pointer;padding:6px 0 0;text-decoration:underline}
+.empty{padding:40px 0;color:var(--graphite)}
+.empty .btn{margin-top:20px}
+.drawer-foot{padding:20px 24px 28px;border-top:1px solid var(--black)}
+.sum{display:flex;justify-content:space-between;margin-bottom:6px;font-variant-numeric:tabular-nums;color:var(--graphite)}
+.sum.total{color:var(--black);font-size:var(--step-1);margin:12px 0 20px}
+.drawer-foot .btn{width:100%}
+.checkout-note{display:none;margin-top:16px;font-size:var(--step--1);color:var(--graphite)}
+.checkout-note.show{display:block}
+.checkout-note a{color:var(--black);font-weight:500}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<a class="visually-hidden" href="#sets">Skip to the keycap sets</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Klunk Caps home">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="miter" stroke-linecap="square" aria-hidden="true"><path d="M30 3 L38 7 L41 14 L50 17 L41 20 L44 33 L44 46 L39 56 L45 61 L21 61 L23 56 L18 46 L18 30 L22 12 Z"/><path d="M41 20 L37 31 L38 45 L34 56"/><path d="M24 26 L32 49 L25 45 Z"/><path d="M34 9 L36 11 L34 13 L32 11 Z" fill="currentColor" stroke-width="1"/></svg>
+      <span class="brand-word" aria-hidden="true">KLUNK<span> CAPS</span></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#topo">Topo</a>
+      <a href="#shadow">Shadow</a>
+      <a href="#script">Script</a>
+      <a href="#fit">Will it fit?</a>
+      <a href="#shipping">Shipping</a>
+    </nav>
+    <button class="cart-link" id="cartBtn" type="button" aria-controls="cart" aria-expanded="false">Cart (<span id="cartCount">0</span>)</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <h1>Same keyboard, whole new look.</h1>
+        <div class="hero-side">
+          <p id="heroLede">Three PBT keycap sets, all Cherry profile, made to fit most mechanical keyboards. Free tracked shipping on every order.</p>
+          <a class="btn" href="#sets">Shop the sets</a>
+        </div>
+      </div>
+      <div class="facade" id="facade" aria-label="The three sets"></div>
+    </div>
+    <div class="plinth">
+      <div class="wrap">
+        <ul>
+          <li><strong>Free tracked shipping</strong>Most orders arrive in 7 to 14 days</li>
+          <li><strong>14-day returns</strong>Send back unused keycaps for a refund</li>
+          <li><strong>Fits MX-style switches</strong>Cherry, Gateron, Kailh, Akko and more</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sets" id="sets" aria-labelledby="setsTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="setsTitle">The sets</h2>
+        <p>Pick a set, pick a colour. Every set is dense PBT plastic that stays matte for years and fits MX-style switches.</p>
+      </div>
+      <div id="setList"></div>
+    </div>
+  </section>
+
+  <section class="fit" id="fit" aria-labelledby="fitTitle">
+    <div class="wrap">
+      <div class="fit-top">
+        <div>
+          <h2 id="fitTitle">Will it fit my keyboard?</h2>
+          <p>Almost certainly. All three sets use the Cherry profile: low, comfortable keys where each row is angled slightly differently, so the board curves toward your fingers.</p>
+        </div>
+        <figure class="profile">
+          <svg viewBox="0 0 520 220" role="img" aria-labelledby="profTitle">
+            <title id="profTitle">Side view of Cherry profile keycaps. Each row has a different height and angle.</title>
+            <line x1="0" y1="170" x2="520" y2="170" stroke="#5A5A5A" stroke-width="1"/>
+            <g fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="miter">
+              <path d="M20 170 L32 86 Q70 96 108 92 L120 170 Z"/>
+              <path d="M145 170 L157 98 Q195 100 233 92 L245 170 Z"/>
+              <path d="M270 170 L282 96 Q320 96 358 86 L370 170 Z"/>
+              <path d="M395 170 L407 84 Q445 80 483 72 L495 170 Z"/>
+            </g>
+            <g stroke="#8C8C8C" stroke-width="1">
+              <line x1="20" y1="184" x2="120" y2="184"/><line x1="20" y1="180" x2="20" y2="188"/><line x1="120" y1="180" x2="120" y2="188"/>
+              <line x1="145" y1="184" x2="245" y2="184"/><line x1="145" y1="180" x2="145" y2="188"/><line x1="245" y1="180" x2="245" y2="188"/>
+              <line x1="270" y1="184" x2="370" y2="184"/><line x1="270" y1="180" x2="270" y2="188"/><line x1="370" y1="180" x2="370" y2="188"/>
+              <line x1="395" y1="184" x2="495" y2="184"/><line x1="395" y1="180" x2="395" y2="188"/><line x1="495" y1="180" x2="495" y2="188"/>
+            </g>
+            <g fill="#8C8C8C" font-family="Instrument Sans, Inter, system-ui, sans-serif" font-size="14" text-anchor="middle">
+              <text x="70" y="208">ZXCV</text>
+              <text x="195" y="208">ASDF</text>
+              <text x="320" y="208">QWER</text>
+              <text x="445" y="208">1234</text>
+            </g>
+          </svg>
+          <figcaption>Cherry profile from the side, front row on the left. It sits lower than the stock keys on most keyboards.</figcaption>
+        </figure>
+      </div>
+      <div class="fit-facts">
+        <div>
+          <h3>MX-style switches</h3>
+          <p>The sets fit the cross-shaped stem used by Cherry MX, Gateron, Kailh, Akko and most hot-swap keyboards. They won't fit low-profile or Topre switches.</p>
+        </div>
+        <div>
+          <h3>Enough keys</h3>
+          <p>Shadow (137 keys) and Script (142 keys) cover full-size keyboards with spares. Topo comes in 97 keys for compact boards, or 133 for full size.</p>
+        </div>
+        <div>
+          <h3>Still not sure?</h3>
+          <p>Send a photo of your keyboard to <a class="js-email" href="mailto:hello@klunkcaps.com">hello@klunkcaps.com</a> and we'll tell you which set fits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info" id="shipping" aria-labelledby="shipTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="shipTitle">Shipping and returns</h2>
+        <p>No surprises at checkout. Prices include shipping.</p>
+      </div>
+      <div class="info-grid">
+        <div>
+          <h3>Free tracked shipping</h3>
+          <p>Every order ships free with tracking. Most arrive in 7 to 14 days, and you'll get a tracking link by email as soon as yours ships.</p>
+        </div>
+        <div id="returns">
+          <h3>14-day returns</h3>
+          <p>Changed your mind? Return unused keycaps within 14 days of delivery for a full refund.</p>
+        </div>
+        <div>
+          <h3>Help by email</h3>
+          <p>Questions about fit, orders or returns go to <a class="js-email" href="mailto:hello@klunkcaps.com">hello@klunkcaps.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faqTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="faqTitle">Questions</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Why PBT keycaps?</summary>
+          <p>PBT is a dense, matte plastic that resists the shiny wear spots cheaper ABS keycaps get after a few months of typing. It also gives a slightly deeper sound.</p>
+        </details>
+        <details>
+          <summary>What does shine-through mean?</summary>
+          <p>On Topo and Shadow, the letters are printed on the front edge of each key in a see-through material, so your keyboard's backlight glows through them.</p>
+        </details>
+        <details>
+          <summary>How do I swap keycaps?</summary>
+          <p>Pull each key straight up with a keycap puller, then press the new one straight down until it sits flush. A full keyboard takes about 15 minutes.</p>
+        </details>
+        <details>
+          <summary>How long does delivery take?</summary>
+          <p>Most orders arrive in 7 to 14 days. You'll get a tracking link by email when your order ships.</p>
+        </details>
+        <details>
+          <summary>Can I return a set?</summary>
+          <p>Yes, within 14 days of delivery, as long as the keycaps are unused. Email <a class="js-email" href="mailto:hello@klunkcaps.com">hello@klunkcaps.com</a> to start a return.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Klunk Caps home">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="miter" stroke-linecap="square" aria-hidden="true"><path d="M30 3 L38 7 L41 14 L50 17 L41 20 L44 33 L44 46 L39 56 L45 61 L21 61 L23 56 L18 46 L18 30 L22 12 Z"/><path d="M41 20 L37 31 L38 45 L34 56"/><path d="M24 26 L32 49 L25 45 Z"/><path d="M34 9 L36 11 L34 13 L32 11 Z" fill="currentColor" stroke-width="1"/></svg>
+      <span class="brand-word" aria-hidden="true">KLUNK<span> CAPS</span></span>
+    </a>
+    <nav aria-label="Footer">
+      <a href="#shipping">Shipping</a>
+      <a href="#returns">Returns</a>
+      <a href="#faq">Questions</a>
+      <a class="js-email" href="mailto:hello@klunkcaps.com">Contact</a>
+    </nav>
+    <span>© <span id="year">2026</span> Klunk Caps</span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="cart" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="cartTitle">Your cart</h2>
+    <button class="close" id="cartClose" type="button">Close</button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot">
+    <div class="sum"><span>Subtotal</span><span id="cartSubtotal">€0</span></div>
+    <div class="sum"><span>Shipping</span><span>Free</span></div>
+    <div class="sum total"><span>Total</span><span id="cartTotal">€0</span></div>
+    <button class="btn" id="checkoutBtn" type="button">Check out</button>
+    <p class="checkout-note" id="checkoutNote">Online checkout opens soon. To order now, <a id="mailOrder" href="#">email us this order</a> and we'll send a payment link.</p>
+  </div>
+</aside>
+
+<script>
+/* ======================================================================
+   STORE SETTINGS: edit these
+   ====================================================================== */
+const STORE = {
+  email: "hello@klunkcaps.com",
+  currency: "EUR",
+  locale: "en-IE",
+  // When payments are set up, paste the checkout link here.
+  // While it's empty, the cart offers to email the order instead.
+  checkoutUrl: ""
+};
+
+/* ======================================================================
+   PRODUCTS: the three lines. Prices are what customers pay.
+   ====================================================================== */
+const IMG = id => "https://ae-pic-a1.aliexpress-media.com/kf/" + id + "_960x960q75.jpg";
+
+const PRODUCTS = [
+  {
+    id: "topo",
+    name: "Topo",
+    tagline: "A topographic map pattern with the letters printed on the front edge, so your backlight glows through.",
+    image: IMG("S9a317d0bd35f472098bce26df3ec522cD.jpg"),
+    optionLabel: "Colour",
+    sizes: [
+      { id: "97",  label: "97 keys",  price: 25 },
+      { id: "133", label: "133 keys", price: 32 }
+    ],
+    options: [
+      { name: "Black",        hex: "#2B2D33", sizes: ["97","133"] },
+      { name: "White",        hex: "#EEF0F2", sizes: ["97","133"] },
+      { name: "Blackberry",   hex: "#463452", sizes: ["97","133"] },
+      { name: "Polar Day",    hex: "#CFE2F0", sizes: ["133"] },
+      { name: "Sky Blue",     hex: "#8EC3E6", sizes: ["133"] },
+      { name: "Lavender",     hex: "#BBAEDC", sizes: ["133"] },
+      { name: "Violet",       hex: "#7B5EA7", sizes: ["133"] },
+      { name: "Blush",        hex: "#F0C3CB", sizes: ["133"] },
+      { name: "Lucky Red",    hex: "#C3363A", sizes: ["133"] },
+      { name: "Red Bean",     hex: "#8E3B3F", sizes: ["133"] },
+      { name: "Matcha Green", hex: "#A9C18C", sizes: ["133"] },
+      { name: "Green Vine",   hex: "#5E8C61", sizes: ["133"] },
+      { name: "Red",          hex: "#D6403F", sizes: ["97"] },
+      { name: "Pink",         hex: "#F2A7BC", sizes: ["97"] },
+      { name: "Purple",       hex: "#8A55C2", sizes: ["97"] },
+      { name: "Blue",         hex: "#3D6FD1", sizes: ["97"] },
+      { name: "Green",        hex: "#53A36B", sizes: ["97"] }
+    ],
+    specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Front-printed, shine-through"],["Keys","97 or 133"],["Fits","MX-style switches"]]
+  },
+  {
+    id: "shadow",
+    name: "Shadow",
+    tagline: "Clean, minimal keys with see-through edges. Light spills out around every key instead of through the top.",
+    image: IMG("Sc64be839c7704ec39785d56070324b66X.jpg"),
+    optionLabel: "Colour",
+    price: 45,
+    options: [
+      { name: "White", hex: "#F2F3F5" },
+      { name: "Grey",  hex: "#9EA2AA" },
+      { name: "Black", hex: "#26282D" },
+      { name: "Pink",  hex: "#F1BFCB" }
+    ],
+    specs: [["Profile","Cherry"],["Material","PBT, translucent edges"],["Legends","Front-printed, shine-through"],["Keys","137"],["Fits","MX-style switches"]]
+  },
+  {
+    id: "script",
+    name: "Script",
+    tagline: "Retro cream and grey keys with dye-sublimated legends that won't wear off. Pick a second alphabet or one of three other themes.",
+    image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
+    optionLabel: "Theme",
+    price: 59,
+    options: [
+      { name: "Katakana" },
+      { name: "Greek" },
+      { name: "Cyrillic" },
+      { name: "Cyrillic, white" },
+      { name: "Handmade" },
+      { name: "Spirit" },
+      { name: "Fate" }
+    ],
+    specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Dye-sublimated, won't wear off"],["Keys","142"],["Fits","MX-style switches"]]
+  }
+];
+
+/* ======================================================================
+   Helpers
+   ====================================================================== */
+const $ = (s, el = document) => el.querySelector(s);
+const money = n => new Intl.NumberFormat(STORE.locale, { style: "currency", currency: STORE.currency, minimumFractionDigits: n % 1 ? 2 : 0 }).format(n);
+const store = {
+  get(k, fallback) { try { const v = localStorage.getItem(k); return v === null ? fallback : JSON.parse(v); } catch (e) { return fallback; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const minPrice = p => p.sizes ? Math.min(...p.sizes.map(s => s.price)) : p.price;
+function priceOf(p, sizeId) { return p.sizes ? p.sizes.find(s => s.id === sizeId).price : p.price; }
+function watchImage(img, box) {
+  const fail = () => box.classList.add("no-img");
+  img.addEventListener("error", fail);
+  if (img.complete && img.naturalWidth === 0) fail();
+}
+
+document.querySelectorAll(".js-email").forEach(a => { a.href = "mailto:" + STORE.email; if (a.textContent.includes("@")) a.textContent = STORE.email; });
+$("#year").textContent = new Date().getFullYear();
+const designCount = PRODUCTS.reduce((n, p) => n + p.options.length, 0);
+$("#heroLede").textContent = `Three PBT keycap sets in ${designCount} designs, all Cherry profile, made to fit most mechanical keyboards. Free tracked shipping on every order.`;
+
+/* ======================================================================
+   Hero facade: one glass pane per set
+   ====================================================================== */
+$("#facade").innerHTML = PRODUCTS.map((p, i) => `
+  <a class="pane" href="#${p.id}" style="--i:${i}">
+    <div class="pane-glass" data-initial="${p.name[0]}">
+      <img src="${p.image}" alt="${p.name} keycap set" referrerpolicy="no-referrer" width="960" height="960">
+    </div>
+    <div class="pane-plate">
+      <span class="pane-name">${p.name}</span>
+      <span class="pane-price">${p.sizes ? "from " : ""}${money(minPrice(p))}</span>
+    </div>
+  </a>`).join("");
+document.querySelectorAll(".pane-glass").forEach(g => watchImage(g.querySelector("img"), g));
+
+/* ======================================================================
+   Product sections
+   ====================================================================== */
+const state = {};
+function renderSets() {
+  $("#setList").innerHTML = PRODUCTS.map(p => {
+    const first = p.options[0];
+    state[p.id] = { option: first.name, size: p.sizes ? (first.sizes ? first.sizes[first.sizes.length - 1] : p.sizes[0].id) : null };
+    const chips = p.options.map((o, i) => o.hex
+      ? `<button type="button" class="swatch" role="radio" aria-checked="${i === 0}" data-opt="${o.name}" aria-label="${o.name}" title="${o.name}" style="--sw:${o.hex}"></button>`
+      : `<button type="button" class="opt" role="radio" aria-checked="${i === 0}" data-opt="${o.name}">${o.name}</button>`
+    ).join("");
+    const sizes = p.sizes ? `
+      <div class="field">
+        <div class="field-label" id="${p.id}-size-l">Size</div>
+        <div class="chips" role="radiogroup" aria-labelledby="${p.id}-size-l">
+          ${p.sizes.map(s => `<button type="button" class="opt" role="radio" aria-checked="false" data-size="${s.id}">${s.label}</button>`).join("")}
+        </div>
+      </div>` : "";
+    return `
+    <article class="set" id="${p.id}" aria-labelledby="${p.id}-name">
+      <div class="set-media" data-initial="${p.name[0]}">
+        <img src="${p.image}" alt="${p.name} keycap set on a mechanical keyboard" loading="lazy" referrerpolicy="no-referrer" width="960" height="960">
+      </div>
+      <div class="set-info">
+        <h3 class="set-name" id="${p.id}-name">${p.name}</h3>
+        <p class="set-tagline">${p.tagline}</p>
+        <p class="set-price"><span class="js-price"></span><small>${p.options.length} ${p.optionLabel === "Theme" ? "themes" : "colours"}</small></p>
+        <div class="field">
+          <div class="field-label" id="${p.id}-opt-l">${p.optionLabel}<output class="js-opt-name">${first.name}</output></div>
+          <div class="chips" role="radiogroup" aria-labelledby="${p.id}-opt-l">${chips}</div>
+        </div>
+        ${sizes}
+        <div class="add-row">
+          <button type="button" class="btn js-add">Add to cart</button>
+          <span class="added-note js-added" role="status" aria-live="polite"></span>
+        </div>
+        <dl class="specs">${p.specs.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
+      </div>
+    </article>`;
+  }).join("");
+
+  PRODUCTS.forEach(p => {
+    const el = document.getElementById(p.id);
+    const media = el.querySelector(".set-media");
+    watchImage(media.querySelector("img"), media);
+    el.addEventListener("click", e => {
+      const opt = e.target.closest("[data-opt]");
+      const size = e.target.closest("[data-size]");
+      if (opt) { state[p.id].option = opt.dataset.opt; syncSet(p); }
+      if (size && size.getAttribute("aria-disabled") !== "true") { state[p.id].size = size.dataset.size; syncSet(p); }
+      if (e.target.closest(".js-add")) addToCart(p, el);
+    });
+    syncSet(p);
+  });
+}
+function syncSet(p) {
+  const el = document.getElementById(p.id);
+  const s = state[p.id];
+  const opt = p.options.find(o => o.name === s.option);
+  el.querySelectorAll("[data-opt]").forEach(b => b.setAttribute("aria-checked", String(b.dataset.opt === s.option)));
+  el.querySelector(".js-opt-name").textContent = s.option;
+  if (p.sizes) {
+    const allowed = opt.sizes || p.sizes.map(x => x.id);
+    if (!allowed.includes(s.size)) s.size = allowed[allowed.length - 1];
+    el.querySelectorAll("[data-size]").forEach(b => {
+      const ok = allowed.includes(b.dataset.size);
+      b.setAttribute("aria-disabled", String(!ok));
+      b.setAttribute("aria-checked", String(b.dataset.size === s.size));
+      b.title = ok ? "" : `${s.option} isn't made in this size`;
+    });
+  }
+  el.querySelector(".js-price").textContent = money(priceOf(p, s.size));
+}
+
+/* ======================================================================
+   Cart
+   ====================================================================== */
+let cart = store.get("klunk-cart-v1", []);
+const lineKey = l => [l.id, l.option, l.size].join("|");
+function optionText(l) {
+  const p = PRODUCTS.find(x => x.id === l.id);
+  const size = p && p.sizes ? ", " + p.sizes.find(s => s.id === l.size).label : "";
+  return l.option + size;
+}
+function addToCart(p, el) {
+  const s = state[p.id];
+  const line = { id: p.id, option: s.option, size: s.size, qty: 1 };
+  const found = cart.find(l => lineKey(l) === lineKey(line));
+  if (found) found.qty += 1; else cart.push(line);
+  saveCart();
+  const note = el.querySelector(".js-added");
+  note.textContent = `Added ${p.name}, ${optionText(line)}`;
+  clearTimeout(note._t); note._t = setTimeout(() => { note.textContent = ""; }, 3500);
+}
+function saveCart() { store.set("klunk-cart-v1", cart); renderCart(); }
+function cartTotal() { return cart.reduce((sum, l) => { const p = PRODUCTS.find(x => x.id === l.id); return p ? sum + priceOf(p, l.size) * l.qty : sum; }, 0); }
+function renderCart() {
+  cart = cart.filter(l => PRODUCTS.some(p => p.id === l.id));
+  const count = cart.reduce((n, l) => n + l.qty, 0);
+  $("#cartCount").textContent = count;
+  $("#cartBtn").setAttribute("aria-label", `Cart, ${count} item${count === 1 ? "" : "s"}`);
+  const body = $("#cartBody");
+  if (!cart.length) {
+    body.innerHTML = `<div class="empty"><p>Your cart is empty. Pick a set and a colour to get started.</p><a class="btn btn-line btn-sm" href="#sets" id="emptyShop">Browse the sets</a></div>`;
+    $("#cartFoot").hidden = true;
+    $("#emptyShop").addEventListener("click", closeCart);
+    return;
+  }
+  $("#cartFoot").hidden = false;
+  body.innerHTML = cart.map((l, i) => {
+    const p = PRODUCTS.find(x => x.id === l.id);
+    return `<div class="line">
+      <img src="${p.image.replace("960x960", "240x240")}" alt="" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'thumb'}))">
+      <div>
+        <div class="line-name">${p.name}</div>
+        <div class="line-opt">${optionText(l)}</div>
+        <div class="qty">
+          <button type="button" data-dec="${i}" aria-label="One fewer ${p.name}">−</button>
+          <span aria-live="polite">${l.qty}</span>
+          <button type="button" data-inc="${i}" aria-label="One more ${p.name}">+</button>
+        </div>
+      </div>
+      <div><div class="line-price">${money(priceOf(p, l.size) * l.qty)}</div><button type="button" class="remove" data-rm="${i}">Remove</button></div>
+    </div>`;
+  }).join("");
+  const total = money(cartTotal());
+  $("#cartSubtotal").textContent = total;
+  $("#cartTotal").textContent = total;
+}
+$("#cartBody").addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.inc) cart[+t.dataset.inc].qty++;
+  if (t.dataset.dec) { const l = cart[+t.dataset.dec]; l.qty--; if (l.qty < 1) cart.splice(+t.dataset.dec, 1); }
+  if (t.dataset.rm) cart.splice(+t.dataset.rm, 1);
+  saveCart();
+});
+const cartEl = $("#cart"), cartBtn = $("#cartBtn");
+function openCart() {
+  document.body.classList.add("cart-open");
+  cartEl.setAttribute("aria-hidden", "false");
+  cartBtn.setAttribute("aria-expanded", "true");
+  $("#checkoutNote").classList.remove("show");
+  setTimeout(() => $("#cartClose").focus(), 50);
+}
+function closeCart() {
+  document.body.classList.remove("cart-open");
+  cartEl.setAttribute("aria-hidden", "true");
+  cartBtn.setAttribute("aria-expanded", "false");
+  cartBtn.focus({ preventScroll: true });
+}
+cartBtn.addEventListener("click", openCart);
+$("#cartClose").addEventListener("click", closeCart);
+$("#scrim").addEventListener("click", closeCart);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("cart-open")) closeCart(); });
+$("#checkoutBtn").addEventListener("click", () => {
+  if (STORE.checkoutUrl) { window.location.href = STORE.checkoutUrl; return; }
+  const lines = cart.map(l => { const p = PRODUCTS.find(x => x.id === l.id); return `${l.qty} x ${p.name} (${optionText(l)}): ${money(priceOf(p, l.size) * l.qty)}`; });
+  const bodyText = `Hi Klunk Caps,\n\nI'd like to order:\n\n${lines.join("\n")}\n\nTotal: ${money(cartTotal())}\n\nShipping address:\n\n`;
+  $("#mailOrder").href = `mailto:${STORE.email}?subject=${encodeURIComponent("Order from klunkcaps.com")}&body=${encodeURIComponent(bodyText)}`;
+  $("#checkoutNote").classList.add("show");
+});
+
+renderSets();
+renderCart();
+</script>
+</body>
+</html>
