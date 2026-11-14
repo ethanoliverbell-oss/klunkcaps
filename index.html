@@ -349,7 +349,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow enter" style="--d:.05s">Top pick: Script retro keycaps</p>
+        <p class="eyebrow enter" style="--d:.05s">Our pick: Script retro keycaps</p>
         <h1 class="enter" style="--d:.12s">Your setup, but <em>premium</em>.</h1>
         <p class="hero-lede enter" style="--d:.2s" id="heroLede">Meet Script: retro keycaps with a second alphabet on every key, dyed in so it never wears off. Free shipping, 15 minutes to swap.</p>
         <div class="hero-ctas enter" style="--d:.28s">
@@ -377,10 +377,10 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
   <!-- FEATURED: SCRIPT -->
   <section class="sec" id="script" aria-labelledby="scriptTitle" style="padding-bottom:0">
     <div class="wrap feat">
-      <figure class="feat-photo"><img src="https://ae-pic-a1.aliexpress-media.com/kf/S6bf2d1509ae44a6496434ea84c163f550.jpg_960x960q75.jpg" alt="Script keycaps on a full mechanical keyboard" loading="lazy" referrerpolicy="no-referrer"><span class="lbl">OUR TOP PICK</span></figure>
+      <figure class="feat-photo"><img src="https://ae-pic-a1.aliexpress-media.com/kf/S6bf2d1509ae44a6496434ea84c163f550.jpg_960x960q75.jpg" alt="Script keycaps on a full mechanical keyboard" loading="lazy" referrerpolicy="no-referrer"><span class="lbl">OUR PICK</span></figure>
       <div>
         <p class="eyebrow">Featured set</p>
-        <h2 id="scriptTitle">Script. The best keys we sell.</h2>
+        <h2 id="scriptTitle">Script. Retro keys, built to last.</h2>
         <p class="feat-lede">Retro cream and grey keys with a second alphabet on every cap. The letters are dyed into the plastic, so they never fade or rub off.</p>
         <ul class="feat-list">
           <li>Legends <span>Dye-sublimated, won't wear off</span></li>
@@ -806,7 +806,7 @@ if (!reduceMotion) setInterval(() => { if (document.hidden) return; heroIdx = (h
 const cfgView = createViewer($("#cfgCanvas"), $("#cfgStage"), { follow: "stage", drag: true, autoSpin: true, scale: 1.05 });
 const state = { pid: "script", opt: "Katakana", size: "133", light: false };
 const setTabs = $("#setTabs");
-setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">TOP</span>' : ""}</button>`).join("");
+setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">OUR PICK</span>' : ""}</button>`).join("");
 
 function renderCfg() {
   const p = PRODUCTS.find(x => x.id === state.pid);
