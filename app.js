@@ -13,8 +13,8 @@ const STORE = { email: "hello@klunkcaps.com",
   shopifyCheckout: false, shopifyDomain: "x0trmf-7b.myshopify.com" };
 /* Shopify variant IDs, keyed "productId|option|size" */
 const VARIANT = {
-  "script|Cyrillic|": 54793729442120, "script|Spirit|": 54793729474888, "script|Handmade|": 54793729507656, "script|Katakana|": 54793729540424,
-  "script|Cyrillic, white|": 54793729573192, "script|Greek|": 54793729605960, "script|Fate|": 54793729638728,
+  "script|Russian layout|": 54793729442120, "script|Spirit|": 54793729474888, "script|Handmade|": 54793729507656, "script|Japanese layout|": 54793729540424,
+  "script|English + Russian, white|": 54793729573192, "script|English + Greek|": 54793729605960, "script|Fate|": 54793729638728,
   "phantom|Grey|": 54793730064712, "phantom|Black|": 54793730097480, "phantom|Pink|": 54793730130248, "phantom|Green|": 54793730163016,
   "phantom|Red|": 54793730195784, "phantom|Purple|": 54793730228552, "phantom|White|": 54793730261320,
   "topo|Green Vine|133": 54793728229704, "topo|Red Bean|133": 54793728262472, "topo|Blush|133": 54793728295240, "topo|Lucky Red|133": 54793728328008,
@@ -30,17 +30,17 @@ const IMG = (id, w = 960) => "https://cdn.shopify.com/s/files/1/0996/5702/3816/f
 const PHOTO = {
   topo: { "Matcha Green":"Sa9da428e0c954f8996a5a831684d92ddR", "Black":"Sc9470d7b5f1a49cab10993d3bb4375f2d", "White":"Sc4c59fca0a354ca5b86b1f6537adfb7eu", "Blackberry":"S22dc2f52fcca4f34a45bed8db17b230ef", "Polar Day":"Sa6be2f33a0f34ee4aacc0db7eb25d189R", "Sky Blue":"Sc2b52c34a4e344c58692a924498a5a6cY", "Lavender":"S7c400ddec95a4a8ab4449fb4ab2c06d6z", "Violet":"Sdbfd17b6617349238fcfdee636dc61d25", "Blush":"S206b550017ee46138b74600862a4ee1cU", "Lucky Red":"S48f4c2473ee1490abf64aaec3fc27f09O", "Red Bean":"S2c673b76a02744ed86bad193cd0f16fb5", "Green Vine":"S9fd5c19059f641e8aee8175cea2072e7q", "Red":"S3c9629e4c3194bb8b6cf1e65ef1631f6m", "Pink":"Se0bb4b2ff70142e18a2aa9d2a8db9f038", "Purple":"S597e4cf9fc394cd8866ba6998de881818", "Blue":"Sf8ed291715bd471b82ccfd691ba7efcfr", "Green":"S0ce35850ea9f44b28f0e25cb64609878T" },
   phantom: { "Black":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Grey":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "White":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Purple":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Red":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Green":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Pink":"Sb72f27057c414b81a89ba2d5b5b7a961X.png" },
-  script: { "Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Katakana":"Sc4d2ac37414443a790e55ac0d92774b5W", "Cyrillic":"S77c7bd1c6e744fefa81fa70836d62ca2U", "Cyrillic, white":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
+  script: { "English + Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Japanese layout":"Sc4d2ac37414443a790e55ac0d92774b5W", "Russian layout":"S77c7bd1c6e744fefa81fa70836d62ca2U", "English + Russian, white":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
 };
 const PRODUCTS = [
   {
-    id: "script", name: "Script", optionLabel: "Theme", price: { USD: 65, EUR: 59 }, blurb: "Retro keys, second alphabet",
-    tag: "Retro cream and grey keys with dye-sublimated legends that won't wear off. Pick a second alphabet or another theme.",
+    id: "script", name: "Script", optionLabel: "Lettering", price: { USD: 65, EUR: 59 }, blurb: "Retro keys, English + a second alphabet",
+    tag: "Retro cream and grey keys with dyed-in letters that never wear off. English + Greek and English + Russian have large English letters with a small second alphabet. The Russian and Japanese layouts put that alphabet first, for people who type in it.",
     image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
     finish: { kind: "pbt", pattern: "script", sideLegend: false },
     options: [
-      { name: "Katakana", hex: "#E7E1D2", sub: "キ" }, { name: "Greek", hex: "#E7E1D2", sub: "Κ" },
-      { name: "Cyrillic", hex: "#E7E1D2", sub: "К" }, { name: "Cyrillic, white", hex: "#F3F2EE", sub: "К" },
+      { name: "English + Greek", hex: "#E7E1D2", sub: "Κ" }, { name: "English + Russian, white", hex: "#F3F2EE", sub: "К" },
+      { name: "Russian layout", hex: "#E7E1D2", sub: "К" }, { name: "Japanese layout", hex: "#E7E1D2", sub: "キ" },
       { name: "Handmade", hex: "#E7E1D2", sub: "✱", soldOut: true }, { name: "Spirit", hex: "#E7E1D2", sub: "◐", soldOut: true },
       { name: "Fate", hex: "#E7E1D2", sub: "✦", soldOut: true }
     ],
@@ -330,7 +330,7 @@ function createViewer(canvas, stageEl, { follow = "window", drag = false, autoSp
 const hero = createViewer($("#heroCanvas"), $("#heroStage"), { follow: "window", scale: 1.05 });
 const heroTag = $(".stage-tag");
 let heroIdx = 0;
-const HERO_CYCLE = [["script", "Katakana"], ["script", "Greek"], ["phantom", "Purple"], ["script", "Cyrillic"], ["topo", "Matcha Green"]];
+const HERO_CYCLE = [["script", "English + Greek"], ["script", "English + Russian, white"], ["phantom", "Purple"], ["script", "Japanese layout"], ["topo", "Matcha Green"]];
 function heroShow([pid, oname]) {
   const p = PRODUCTS.find(x => x.id === pid), o = p.options.find(x => x.name === oname);
   hero && hero.setConfig(p, o, pid !== "script");
@@ -341,7 +341,7 @@ if (!reduceMotion) setInterval(() => { if (document.hidden) return; heroIdx = (h
 
 /* ===================== Configurator ===================== */
 const cfgView = createViewer($("#cfgCanvas"), $("#cfgStage"), { follow: "stage", drag: true, autoSpin: true, scale: 1.05 });
-const state = { pid: "script", opt: "Katakana", size: "133", light: false };
+const state = { pid: "script", opt: "English + Greek", size: "133", light: false };
 const setTabs = $("#setTabs");
 const drawTabs = () => { setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">OUR PICK</span>' : ""}<small>${p.sizes ? "from " : ""}${esc(money(minPrice(p)))}</small></button>`).join(""); };
 drawTabs();
@@ -392,7 +392,7 @@ $("#cfgPhoto").addEventListener("error", () => $("#cfgPhotoWrap").classList.add(
 renderCfg();
 
 /* ===================== Set picker: Script first, the others one tap away ===================== */
-const SET_PHOTO = { script: IMG(PHOTO.script.Katakana, 480), topo: IMG(PHOTO.topo["Matcha Green"], 480), phantom: IMG(PHOTO.phantom.Purple, 480) };
+const SET_PHOTO = { script: IMG(PHOTO.script["English + Greek"], 480), topo: IMG(PHOTO.topo["Matcha Green"], 480), phantom: IMG(PHOTO.phantom.Purple, 480) };
 const drawPicker = () => { $("#setPicker").innerHTML = PRODUCTS.map(p => `<button type="button" class="set-card${p.id === "script" ? " is-pick" : ""}" data-pick="${p.id}" aria-pressed="${p.id === state.pid}">
   <span class="set-card-img"><img src="${SET_PHOTO[p.id]}" alt="" loading="lazy" referrerpolicy="no-referrer"></span>
   <span class="set-card-txt"><b>${p.name}</b>${p.id === "script" ? '<em>Our pick</em>' : ""}<span>${esc(p.blurb)}</span></span>
@@ -406,11 +406,11 @@ $("#setPicker").addEventListener("click", e => {
 $("#setPicker").addEventListener("error", e => { if (e.target.tagName === "IMG") e.target.parentElement.classList.add("no-img"); }, true);
 
 /* ===================== Featured Script themes ===================== */
-const FEAT_THEMES = ["Cyrillic", "Katakana", "Greek", "Cyrillic, white"];
+const FEAT_THEMES = ["English + Greek", "English + Russian, white", "Russian layout", "Japanese layout"];
 $("#themes").innerHTML = FEAT_THEMES.map(t => `<button type="button" class="theme" data-theme="${t}" aria-label="Choose Script in ${t}"><img src="${IMG(PHOTO.script[t], 240)}" alt="" loading="lazy" referrerpolicy="no-referrer"><span>${t}</span></button>`).join("");
 const goScript = t => { state.pid = "script"; state.opt = t; renderCfg(); $("#configurator").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); };
 $("#themes").addEventListener("click", e => { const b = e.target.closest("[data-theme]"); if (b) goScript(b.dataset.theme); });
-$("#featGo").addEventListener("click", e => { e.preventDefault(); goScript(state.pid === "script" ? state.opt : "Katakana"); });
+$("#featGo").addEventListener("click", e => { e.preventDefault(); goScript(state.pid === "script" ? state.opt : "English + Greek"); });
 document.querySelectorAll(".feat-photo img, .theme img").forEach(img => { const f = () => img.parentElement.classList.add("no-img"); img.addEventListener("error", f); if (img.complete && img.naturalWidth === 0) f(); });
 
 /* ===================== Cart ===================== */
