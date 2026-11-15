@@ -10,11 +10,11 @@ if (window.top !== window.self) { document.documentElement.style.display = "none
 const STORE = { email: "hello@klunkcaps.com",
   /* Set shopifyCheckout to true once Shopify Payments is active and the store password is removed.
      The cart then goes straight to Shopify's secure checkout with these variants. */
-  shopifyCheckout: false, shopifyDomain: "x0trmf-7b.myshopify.com" };
+  shopifyCheckout: true, shopifyDomain: "x0trmf-7b.myshopify.com" };
 /* Shopify variant IDs, keyed "productId|option|size" */
 const VARIANT = {
   "script|Russian layout|": 54793729442120, "script|Spirit|": 54793729474888, "script|Handmade|": 54793729507656, "script|Japanese layout|": 54793729540424,
-  "script|English + Russian, white|": 54793729573192, "script|English + Greek|": 54793729605960, "script|Fate|": 54793729638728,
+  "script|English + Russian (white)|": 54793729573192, "script|English + Greek|": 54793729605960, "script|Fate|": 54793729638728,
   "phantom|Grey|": 54793730064712, "phantom|Black|": 54793730097480, "phantom|Pink|": 54793730130248, "phantom|Green|": 54793730163016,
   "phantom|Red|": 54793730195784, "phantom|Purple|": 54793730228552, "phantom|White|": 54793730261320,
   "topo|Green Vine|133": 54793728229704, "topo|Red Bean|133": 54793728262472, "topo|Blush|133": 54793728295240, "topo|Lucky Red|133": 54793728328008,
@@ -30,7 +30,7 @@ const IMG = (id, w = 960) => "https://cdn.shopify.com/s/files/1/0996/5702/3816/f
 const PHOTO = {
   topo: { "Matcha Green":"Sa9da428e0c954f8996a5a831684d92ddR", "Black":"Sc9470d7b5f1a49cab10993d3bb4375f2d", "White":"Sc4c59fca0a354ca5b86b1f6537adfb7eu", "Blackberry":"S22dc2f52fcca4f34a45bed8db17b230ef", "Polar Day":"Sa6be2f33a0f34ee4aacc0db7eb25d189R", "Sky Blue":"Sc2b52c34a4e344c58692a924498a5a6cY", "Lavender":"S7c400ddec95a4a8ab4449fb4ab2c06d6z", "Violet":"Sdbfd17b6617349238fcfdee636dc61d25", "Blush":"S206b550017ee46138b74600862a4ee1cU", "Lucky Red":"S48f4c2473ee1490abf64aaec3fc27f09O", "Red Bean":"S2c673b76a02744ed86bad193cd0f16fb5", "Green Vine":"S9fd5c19059f641e8aee8175cea2072e7q", "Red":"S3c9629e4c3194bb8b6cf1e65ef1631f6m", "Pink":"Se0bb4b2ff70142e18a2aa9d2a8db9f038", "Purple":"S597e4cf9fc394cd8866ba6998de881818", "Blue":"Sf8ed291715bd471b82ccfd691ba7efcfr", "Green":"S0ce35850ea9f44b28f0e25cb64609878T" },
   phantom: { "Black":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Grey":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "White":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Purple":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Red":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Green":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Pink":"Sb72f27057c414b81a89ba2d5b5b7a961X.png" },
-  script: { "English + Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Japanese layout":"Sc4d2ac37414443a790e55ac0d92774b5W", "Russian layout":"S77c7bd1c6e744fefa81fa70836d62ca2U", "English + Russian, white":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
+  script: { "English + Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Japanese layout":"Sc4d2ac37414443a790e55ac0d92774b5W", "Russian layout":"S77c7bd1c6e744fefa81fa70836d62ca2U", "English + Russian (white)":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
 };
 const PRODUCTS = [
   {
@@ -39,7 +39,7 @@ const PRODUCTS = [
     image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
     finish: { kind: "pbt", pattern: "script", sideLegend: false },
     options: [
-      { name: "English + Greek", hex: "#E7E1D2", sub: "Κ", note: "Main letters in English, small Greek letters beside them." }, { name: "English + Russian, white", hex: "#F3F2EE", sub: "К", note: "Main letters in English, small Russian letters beside them." },
+      { name: "English + Greek", hex: "#E7E1D2", sub: "Κ", note: "Main letters in English, small Greek letters beside them." }, { name: "English + Russian (white)", hex: "#F3F2EE", sub: "К", note: "Main letters in English, small Russian letters beside them." },
       { name: "Russian layout", hex: "#E7E1D2", sub: "К", note: "Main letters in Russian (Cyrillic), with small English letters." }, { name: "Japanese layout", hex: "#E7E1D2", sub: "キ", note: "Main letters in Japanese, including keys like Shift and Enter." },
       { name: "Handmade", hex: "#E7E1D2", sub: "✱", soldOut: true }, { name: "Spirit", hex: "#E7E1D2", sub: "◐", soldOut: true },
       { name: "Fate", hex: "#E7E1D2", sub: "✦", soldOut: true }
@@ -74,13 +74,13 @@ const PRODUCTS = [
     specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Front, shine-through"],["Keys","97 or 133"]]
   },
   {
-    id: "phantom", name: "Phantom", optionLabel: "Colour", price: { USD: 49, EUR: 45 }, blurb: "XVX gradient, 7 colours",
+    id: "phantom", name: "Phantom", optionLabel: "Colour", price: { USD: 49, EUR: 45 }, blurb: "XVX gradient, 6 colours",
     tag: "XVX double-shot PBT. Each key fades from deep colour to dark, with see-through letters on the top and side.",
     image: IMG("Sb72f27057c414b81a89ba2d5b5b7a961X.png"),
     finish: { kind: "pbt", pattern: "gradient", sideLegend: true },
     options: [
       { name: "Black", hex: "#3A3D44" }, { name: "Grey", hex: "#8D929A" }, { name: "White", hex: "#ECEDEF" },
-      { name: "Purple", hex: "#7353B0" }, { name: "Red", hex: "#C04A3B" }, { name: "Green", hex: "#5D9A63" }, { name: "Pink", hex: "#E7A9BA" }
+      { name: "Purple", hex: "#7353B0" }, { name: "Red", hex: "#C04A3B" }, { name: "Green", hex: "#5D9A63" }
     ],
     specs: [["Brand","XVX"],["Material","PBT, double-shot"],["Legends","Top and side, shine-through"],["Keys","Full set"]]
   }
@@ -330,7 +330,7 @@ function createViewer(canvas, stageEl, { follow = "window", drag = false, autoSp
 const hero = createViewer($("#heroCanvas"), $("#heroStage"), { follow: "window", scale: 1.05 });
 const heroTag = $(".stage-tag");
 let heroIdx = 0;
-const HERO_CYCLE = [["script", "English + Greek"], ["script", "English + Russian, white"], ["phantom", "Purple"], ["script", "Japanese layout"], ["topo", "Matcha Green"]];
+const HERO_CYCLE = [["script", "English + Greek"], ["script", "English + Russian (white)"], ["phantom", "Purple"], ["script", "Japanese layout"], ["topo", "Matcha Green"]];
 function heroShow([pid, oname]) {
   const p = PRODUCTS.find(x => x.id === pid), o = p.options.find(x => x.name === oname);
   hero && hero.setConfig(p, o, pid !== "script");
@@ -374,7 +374,7 @@ function renderCfg() {
   } else { sizeWrap.hidden = true; state.size = null; }
   const ph = (PHOTO[p.id] || {})[opt.name], photo = $("#cfgPhoto"), wrapP = $("#cfgPhotoWrap");
   if (ph) { wrapP.classList.remove("no-img"); photo.src = IMG(ph, 640); photo.alt = `${p.name} in ${opt.name} on a full keyboard`; }
-  $("#cfgPhotoLbl").textContent = p.id === "phantom" ? "PHANTOM · 4 OF 7 COLOURS" : `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
+  $("#cfgPhotoLbl").textContent = p.id === "phantom" ? "PHANTOM · 4 OF 6 COLOURS" : `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
   $("#cfgPrice").textContent = money(priceOf(p, state.size));
   state.light = !!p.finish.sideLegend;
   const addBtn = $("#addBtn"); addBtn.disabled = !!opt.soldOut; addBtn.textContent = opt.soldOut ? "Sold out" : "Add to cart";
@@ -407,7 +407,7 @@ $("#setPicker").addEventListener("click", e => {
 $("#setPicker").addEventListener("error", e => { if (e.target.tagName === "IMG") e.target.parentElement.classList.add("no-img"); }, true);
 
 /* ===================== Featured Script themes ===================== */
-const FEAT_THEMES = ["English + Greek", "English + Russian, white", "Russian layout", "Japanese layout"];
+const FEAT_THEMES = ["English + Greek", "English + Russian (white)", "Russian layout", "Japanese layout"];
 $("#themes").innerHTML = FEAT_THEMES.map(t => `<button type="button" class="theme" data-theme="${t}" aria-label="Choose Script in ${t}"><img src="${IMG(PHOTO.script[t], 240)}" alt="" loading="lazy" referrerpolicy="no-referrer"><span>${t}</span></button>`).join("");
 const goScript = t => { state.pid = "script"; state.opt = t; renderCfg(); $("#configurator").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); };
 $("#themes").addEventListener("click", e => { const b = e.target.closest("[data-theme]"); if (b) goScript(b.dataset.theme); });
