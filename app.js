@@ -98,7 +98,7 @@ const store = {
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* Currency: whole-number prices in US dollars or euros. Guessed from the visitor's time zone, switchable in the nav, remembered. */
 const CURRENCIES = { USD: { locale: "en-US", note: "Prices in US dollars. Sales tax, if any, is shown at checkout. Free shipping." },
-                     EUR: { locale: "en-IE", note: "Prices in euros, VAT included. Free shipping." } };
+                     EUR: { locale: "en-IE", note: "Prices in euros. Import VAT may be charged on delivery. Free shipping." } };
 const guessCur = () => { try { return /^America\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone) ? "USD" : "EUR"; } catch (e) { return "USD"; } };
 let CUR = store.get("klunk-cur", null); if (!CURRENCIES[CUR]) CUR = guessCur();
 const money = n => new Intl.NumberFormat(CURRENCIES[CUR].locale, { style: "currency", currency: CUR, maximumFractionDigits: 0 }).format(n);
