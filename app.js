@@ -26,6 +26,8 @@ const VARIANT = {
 
 /* ===================== Products (same three lines) ===================== */
 /* Product photos are served from Shopify's CDN (our store platform), not from the supplier. */
+/* Free bonus keys added to every Topo order (Shopify product, €0; DSers orders it with the Topo set). */
+const BONUS_VARIANT = 54826835411272;
 const IMG = (id, w = 960) => "https://cdn.shopify.com/s/files/1/0996/5702/3816/files/" + id.replace(/\.(jpg|png|webp)$/, "") + ".webp?width=" + w;
 const PHOTO = {
   topo: { "Matcha Green":"Sa9da428e0c954f8996a5a831684d92ddR", "Black":"Sc9470d7b5f1a49cab10993d3bb4375f2d", "White":"Sc4c59fca0a354ca5b86b1f6537adfb7eu", "Blackberry":"S22dc2f52fcca4f34a45bed8db17b230ef", "Polar Day":"Sa6be2f33a0f34ee4aacc0db7eb25d189R", "Sky Blue":"Sc2b52c34a4e344c58692a924498a5a6cY", "Lavender":"S7c400ddec95a4a8ab4449fb4ab2c06d6z", "Violet":"Sdbfd17b6617349238fcfdee636dc61d25", "Blush":"S206b550017ee46138b74600862a4ee1cU", "Lucky Red":"S48f4c2473ee1490abf64aaec3fc27f09O", "Red Bean":"S2c673b76a02744ed86bad193cd0f16fb5", "Green Vine":"S9fd5c19059f641e8aee8175cea2072e7q", "Red":"S3c9629e4c3194bb8b6cf1e65ef1631f6m", "Pink":"Se0bb4b2ff70142e18a2aa9d2a8db9f038", "Purple":"S597e4cf9fc394cd8866ba6998de881818", "Blue":"Sf8ed291715bd471b82ccfd691ba7efcfr", "Green":"S0ce35850ea9f44b28f0e25cb64609878T" },
@@ -48,6 +50,7 @@ const PRODUCTS = [
   },
   {
     id: "topo", name: "Topo", optionLabel: "Colour", blurb: "Map pattern, 17 colours",
+    bonus: { title: "4 translucent accent keys", text: "Comes with every Topo set: lightning-bolt WASD keys that let your backlight shine through.", image: IMG("S7879e38ce2ab448f8cf491d9a55e63423.jpg", 160) },
     tag: "A topographic map pattern with legends printed on the front edge, so your backlight glows through.",
     image: IMG("S9a317d0bd35f472098bce26df3ec522cD.jpg"),
     finish: { kind: "pbt", pattern: "topo", sideLegend: true },
@@ -362,6 +365,8 @@ function renderCfg() {
     group.innerHTML = p.options.map(o => `<button type="button" class="opt${o.soldOut ? " sold" : ""}" role="radio" aria-checked="${o.name === opt.name}" data-opt="${o.name}"${o.soldOut ? ' title="Sold out for now"' : ""}>${o.name}${o.soldOut ? " · sold out" : ""}</button>`).join("");
   }
   const note = $("#optNote"); note.textContent = opt.note || ""; note.hidden = !opt.note;
+  const bonus = $("#cfgBonus"); bonus.hidden = !p.bonus;
+  if (p.bonus) { const bi = $("#bonusImg"); bi.style.visibility = ""; bi.onerror = () => { bi.style.visibility = "hidden"; }; bi.src = p.bonus.image; $("#bonusTitle").textContent = p.bonus.title; $("#bonusText").textContent = p.bonus.text; }
   const sizeWrap = $("#sizeWrap");
   if (p.sizes) {
     sizeWrap.hidden = false;
@@ -396,7 +401,7 @@ renderCfg();
 const SET_PHOTO = { script: IMG(PHOTO.script["English + Greek"], 480), topo: IMG(PHOTO.topo["Matcha Green"], 480), phantom: IMG(PHOTO.phantom.Purple, 480) };
 const drawPicker = () => { $("#setPicker").innerHTML = PRODUCTS.map(p => `<button type="button" class="set-card${p.id === "script" ? " is-pick" : ""}" data-pick="${p.id}" aria-pressed="${p.id === state.pid}">
   <span class="set-card-img"><img src="${SET_PHOTO[p.id]}" alt="" loading="lazy" referrerpolicy="no-referrer"></span>
-  <span class="set-card-txt"><b>${p.name}</b>${p.id === "script" ? '<em>Our pick</em>' : ""}<span>${esc(p.blurb)}</span></span>
+  <span class="set-card-txt"><b>${p.name}</b>${p.id === "script" ? '<em>Our pick</em>' : ""}${p.bonus ? '<em>Bonus keys</em>' : ""}<span>${esc(p.blurb)}</span></span>
   <span class="set-card-price">${p.sizes ? "<small>from</small>" : ""}${esc(money(minPrice(p)))}</span></button>`).join(""); };
 drawPicker();
 $("#setPicker").addEventListener("click", e => {
@@ -439,6 +444,14 @@ $("#addBtn").addEventListener("click", () => {
   openCart();
 });
 function saveCart() { store.set("klunk-cart-v2", cart); renderCart(); }
+const bonusQty = () => cart.filter(l => (PRODUCTS.find(x => x.id === l.id) || {}).bonus).reduce((n, l) => n + l.qty, 0);
+function bonusLine() {
+  const q = bonusQty(); if (!q) return "";
+  const b = PRODUCTS.find(x => x.bonus).bonus;
+  return `<div class="line line-bonus"><img src="${esc(b.image)}" alt="" referrerpolicy="no-referrer">
+    <div><div class="line-name">Bonus: ${esc(b.title)}</div><div class="line-opt">Included with your Topo set${q > 1 ? ` · ${q} sets` : ""}</div></div>
+    <div class="line-price">Free</div></div>`;
+}
 function renderCart() {
   cart = cart.filter(validLine);
   const count = cart.reduce((n, l) => n + l.qty, 0);
@@ -453,7 +466,7 @@ function renderCart() {
     <img src="${esc(p.image.replace(/width=\d+/, "width=240"))}" alt="" referrerpolicy="no-referrer">
     <div><div class="line-name">${esc(p.name)}</div><div class="line-opt">${esc(optText(l))}</div>
     <div class="qty"><button type="button" data-dec="${i}" aria-label="One fewer ${esc(p.name)}">−</button><span>${esc(l.qty)}</span><button type="button" data-inc="${i}" aria-label="One more ${esc(p.name)}">+</button></div></div>
-    <div><div class="line-price">${esc(money(priceOf(p, l.size) * l.qty))}</div><button type="button" class="rm" data-rm="${i}">Remove</button></div></div>`; }).join("");
+    <div><div class="line-price">${esc(money(priceOf(p, l.size) * l.qty))}</div><button type="button" class="rm" data-rm="${i}">Remove</button></div></div>`; }).join("") + bonusLine();
   body.querySelectorAll(".line img").forEach(img => img.addEventListener("error", () => { const d = document.createElement("div"); d.className = "thumb"; img.replaceWith(d); }, { once: true }));
   $("#cartSub").textContent = $("#cartTotal").textContent = money(total());
 }
@@ -471,6 +484,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && document.b
 $("#checkoutBtn").addEventListener("click", () => {
   if (STORE.shopifyCheckout) {
     const items = cart.map(l => { const v = VARIANT[[l.id, l.option, l.size || ""].join("|")]; return v ? v + ":" + l.qty : null; });
+    if (bonusQty()) items.push(BONUS_VARIANT + ":" + bonusQty());
     if (items.length && items.every(x => x && /^\d+:\d+$/.test(x))) { location.assign(`https://${STORE.shopifyDomain}/cart/${items.join(",")}`); return; }
   }
   const lines = cart.map(l => { const p = PRODUCTS.find(x => x.id === l.id); return `${l.qty} x ${p.name} (${optText(l)}): ${money(priceOf(p, l.size) * l.qty)}`; });
