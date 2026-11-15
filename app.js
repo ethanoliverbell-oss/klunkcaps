@@ -7,7 +7,7 @@ import { RoomEnvironment } from "./vendor/RoomEnvironment.js";
 if (window.top !== window.self) { document.documentElement.style.display = "none"; try { window.top.location.replace(window.self.location.href); } catch (e) {} throw new Error("framed"); }
 
 /* ===================== Store settings ===================== */
-const STORE = { email: "hello@klunkcaps.com", checkoutUrl: "",
+const STORE = { email: "hello@klunkcaps.com",
   /* Set shopifyCheckout to true once Shopify Payments is active and the store password is removed.
      The cart then goes straight to Shopify's secure checkout with these variants. */
   shopifyCheckout: false, shopifyDomain: "x0trmf-7b.myshopify.com" };
@@ -472,7 +472,6 @@ $("#checkoutBtn").addEventListener("click", () => {
     const items = cart.map(l => { const v = VARIANT[[l.id, l.option, l.size || ""].join("|")]; return v ? v + ":" + l.qty : null; });
     if (items.length && items.every(x => x && /^\d+:\d+$/.test(x))) { location.assign(`https://${STORE.shopifyDomain}/cart/${items.join(",")}`); return; }
   }
-  if (STORE.checkoutUrl) { location.href = STORE.checkoutUrl; return; }
   const lines = cart.map(l => { const p = PRODUCTS.find(x => x.id === l.id); return `${l.qty} x ${p.name} (${optText(l)}): ${money(priceOf(p, l.size) * l.qty)}`; });
   $("#mailOrder").href = `mailto:${STORE.email}?subject=${encodeURIComponent("Order from klunkcaps.com")}&body=${encodeURIComponent(`Hi Klunk Caps,\n\nI'd like to order:\n\n${lines.join("\n")}\n\nTotal: ${money(total())}\n\nShipping address:\n\n`)}`;
   $("#checkoutNote").classList.add("show");
