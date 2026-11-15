@@ -35,12 +35,12 @@ const PHOTO = {
 const PRODUCTS = [
   {
     id: "script", name: "Script", optionLabel: "Lettering", price: { USD: 65, EUR: 59 }, blurb: "Retro keys, English + a second alphabet",
-    tag: "Retro cream and grey keys with dyed-in letters that never wear off. English + Greek and English + Russian have large English letters with a small second alphabet. The Russian and Japanese layouts put that alphabet first, for people who type in it.",
+    tag: "Retro cream and grey keys with dyed-in letters that never wear off. Choose English letters with a small second alphabet, or a full Russian or Japanese layout.",
     image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
     finish: { kind: "pbt", pattern: "script", sideLegend: false },
     options: [
-      { name: "English + Greek", hex: "#E7E1D2", sub: "Κ" }, { name: "English + Russian, white", hex: "#F3F2EE", sub: "К" },
-      { name: "Russian layout", hex: "#E7E1D2", sub: "К" }, { name: "Japanese layout", hex: "#E7E1D2", sub: "キ" },
+      { name: "English + Greek", hex: "#E7E1D2", sub: "Κ", note: "Main letters in English, small Greek letters beside them." }, { name: "English + Russian, white", hex: "#F3F2EE", sub: "К", note: "Main letters in English, small Russian letters beside them." },
+      { name: "Russian layout", hex: "#E7E1D2", sub: "К", note: "Main letters in Russian (Cyrillic), with small English letters." }, { name: "Japanese layout", hex: "#E7E1D2", sub: "キ", note: "Main letters in Japanese, including keys like Shift and Enter." },
       { name: "Handmade", hex: "#E7E1D2", sub: "✱", soldOut: true }, { name: "Spirit", hex: "#E7E1D2", sub: "◐", soldOut: true },
       { name: "Fate", hex: "#E7E1D2", sub: "✦", soldOut: true }
     ],
@@ -361,6 +361,7 @@ function renderCfg() {
     group.className = "opts";
     group.innerHTML = p.options.map(o => `<button type="button" class="opt${o.soldOut ? " sold" : ""}" role="radio" aria-checked="${o.name === opt.name}" data-opt="${o.name}"${o.soldOut ? ' title="Sold out for now"' : ""}>${o.name}${o.soldOut ? " · sold out" : ""}</button>`).join("");
   }
+  const note = $("#optNote"); note.textContent = opt.note || ""; note.hidden = !opt.note;
   const sizeWrap = $("#sizeWrap");
   if (p.sizes) {
     sizeWrap.hidden = false;

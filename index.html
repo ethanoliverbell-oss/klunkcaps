@@ -173,6 +173,7 @@ section{position:relative}
 .opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
 .opt{min-height:38px;padding:0 .9em;border-radius:2px;border:1px solid var(--line-2);background:rgba(255,255,255,.03);color:var(--muted);font:500 .85rem/1 var(--f-body);cursor:pointer}
 .opt:hover{color:var(--text)}
+.opt-note{margin:-14px 0 24px;font-size:.85rem;color:var(--muted)}
 .opt[aria-checked="true"]{border-color:#F4F4F2;color:#141517;background:#F4F4F2}
 .opt[aria-disabled="true"]{opacity:.35;cursor:not-allowed;text-decoration:line-through}
 .cfg-specs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:2px;overflow:hidden;margin-bottom:24px}
@@ -460,6 +461,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
           <p class="cfg-tag" id="cfgTag"></p>
           <div class="cfg-row"><span class="cfg-label" id="optLabel">Colour<output id="optName"></output></span></div>
           <div id="optGroup" role="radiogroup" aria-labelledby="optLabel"></div>
+          <p class="opt-note" id="optNote" aria-live="polite" hidden></p>
           <div id="sizeWrap">
             <div class="cfg-row"><span class="cfg-label" id="sizeLabel">Size</span></div>
             <div class="opts" id="sizeGroup" role="radiogroup" aria-labelledby="sizeLabel"></div>
@@ -526,7 +528,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
   </div>
 </aside>
 
-<script type="module" src="app.js?v=8"></script>
+<script type="module" src="app.js?v=9"></script>
 <!--
 ==========================================================================
 DESIGN TOKENS
