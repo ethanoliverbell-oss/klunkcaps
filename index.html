@@ -332,6 +332,27 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
 .opt.sold{opacity:.5;text-decoration:line-through;text-decoration-thickness:1px}
 #addBtn:disabled{opacity:.5;cursor:not-allowed}
 .safety{margin-top:10px;font-size:.75rem;color:var(--dim)}
+.cur{display:inline-flex;border:1px solid var(--line-2);border-radius:2px;overflow:hidden}
+.cur button{background:none;border:0;color:var(--muted);font:500 .74rem/1 var(--f-mono);padding:0 .7em;min-height:36px;cursor:pointer}
+.cur button[aria-pressed="true"]{background:#F4F4F2;color:#141517}
+.set-tab small{display:block;margin-top:5px;font:500 .7rem/1 var(--f-mono);opacity:.75}
+.set-picker{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px;margin:0 0 28px}
+.set-card{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:14px;text-align:left;padding:12px 16px 12px 12px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:2px;color:var(--text);cursor:pointer;font:inherit;transition:border-color .15s,background .15s}
+.set-card:hover{border-color:var(--line-2);background:rgba(255,255,255,.05)}
+.set-card[aria-pressed="true"]{border-color:#F4F4F2}
+.set-card.is-pick{background:rgba(255,255,255,.06)}
+.set-card-img{width:72px;height:52px;overflow:hidden;border-radius:2px;background:#1c1d21}
+.set-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.set-card-img.no-img img{display:none}
+.set-card-txt{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;min-width:0}
+.set-card-txt b{font:600 var(--s-0)/1.1 var(--f-head)}
+.set-card-txt em{font:600 .6rem/1 var(--f-mono);font-style:normal;padding:3px 5px;border:1px solid currentColor}
+.set-card-txt span{flex-basis:100%;color:var(--muted);font-size:var(--s--1)}
+.set-card-price{font:600 var(--s-0)/1 var(--f-head);text-align:right;white-space:nowrap}
+.set-card-price small{display:block;font:500 .66rem/1 var(--f-mono);color:var(--muted);margin-bottom:4px}
+@media (max-width:860px){.set-picker{grid-template-columns:1fr}}
+.cur button{white-space:nowrap}
+@media (max-width:560px){.cur button{padding:0 .75em;font-size:.85rem}.cur-code{display:none}}
 .set-tab .pick{display:inline-block;margin-left:6px;padding:2px 5px;font:600 .58rem/1 var(--f-mono);border:1px solid currentColor;vertical-align:2px}
 @media (max-width:900px){.feat{grid-template-columns:1fr}}
 </style>
@@ -351,6 +372,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
       <a href="#shipping">Shipping</a>
       <a href="#faq">FAQ</a>
     </nav>
+    <div class="cur" id="curToggle" role="group" aria-label="Currency"><button type="button" data-cur="USD" aria-pressed="false" aria-label="US dollars">$<span class="cur-code"> USD</span></button><button type="button" data-cur="EUR" aria-pressed="false" aria-label="Euros">€<span class="cur-code"> EUR</span></button></div>
     <button class="cart-btn" id="cartBtn" type="button" aria-controls="cart" aria-expanded="false">Cart <b id="cartCount">0</b></button>
     <a class="btn btn-primary btn-sm" href="#configurator">Shop now</a>
   </div>
@@ -367,10 +389,10 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
         <p class="hero-lede enter" style="--d:.2s" id="heroLede">Meet Script: retro keycaps with a second alphabet on every key, dyed in so it never wears off. Free shipping, 15 minutes to swap.</p>
         <div class="hero-ctas enter" style="--d:.28s">
           <a class="btn btn-primary" href="#script">Shop Script</a>
-          <a class="btn btn-ghost" href="#configurator">See all sets</a>
+          <a class="btn btn-ghost" href="#setPicker">Compare all 3 sets</a>
         </div>
         <div class="hero-facts enter" style="--d:.36s">
-          <div><strong>From €25</strong>per full set</div>
+          <div><strong id="heroFrom">From $27</strong>per full set</div>
           <div><strong>Free</strong>tracked shipping</div>
           <div><strong>14 days</strong>to return</div>
         </div>
@@ -402,7 +424,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
         </ul>
         <div class="themes" id="themes"></div>
         <div class="feat-buy">
-          <div><strong>€59</strong><small>Free tracked shipping</small></div>
+          <div><strong id="featPrice">$65</strong><small>Free tracked shipping</small></div>
           <a class="btn btn-primary" href="#configurator" id="featGo">Choose your theme</a>
         </div>
       </div>
@@ -419,6 +441,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
         </div>
         <p>The 3D keycap changes as you choose. Drag it to look around. The photo shows the full set on a real keyboard.</p>
       </div>
+      <div class="set-picker" id="setPicker" aria-label="Choose a set"></div>
       <div class="cfg">
         <div class="cfg-stage glass">
           <div class="stage" id="cfgStage">
@@ -441,7 +464,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
             <div class="opts" id="sizeGroup" role="radiogroup" aria-labelledby="sizeLabel"></div>
           </div>
           <div class="cfg-buy">
-            <div class="cfg-price"><span id="cfgPrice">€32</span><small>Free tracked shipping</small></div>
+            <div class="cfg-price"><span id="cfgPrice">$65</span><small>Free tracked shipping</small></div>
             <button class="btn btn-lime" id="addBtn" type="button">Add to cart</button>
           </div>
           <p class="added" id="addedNote" role="status" aria-live="polite"></p>
@@ -485,7 +508,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
       <span class="logo-word" aria-hidden="true">KLUNK<span> CAPS</span></span>
     </a>
     <nav aria-label="Footer"><a href="legal.html#notice">Legal notice</a><a href="legal.html#privacy">Privacy</a><a href="legal.html#terms">Terms</a><a href="legal.html#returns">Returns</a><a href="legal.html#shipping">Shipping</a><a href="legal.html#safety">Product safety</a><a class="js-email" href="mailto:hello@klunkcaps.com">Contact</a></nav>
-    <span>© <span id="year">2026</span> Klunk Caps · Prices in euros, VAT included where applicable, free shipping.</span>
+    <span>© <span id="year">2026</span> Klunk Caps · <span id="curNote">Prices in US dollars. Free shipping.</span></span>
   </div>
 </footer>
 
@@ -494,9 +517,9 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
   <div class="drawer-head"><h2 id="cartTitle">Your cart</h2><button class="x" id="cartClose" type="button">Close</button></div>
   <div class="drawer-body" id="cartBody"></div>
   <div class="drawer-foot" id="cartFoot">
-    <div class="sum"><span>Subtotal</span><span id="cartSub">€0</span></div>
+    <div class="sum"><span>Subtotal</span><span id="cartSub">$0</span></div>
     <div class="sum"><span>Shipping</span><span>Free</span></div>
-    <div class="sum total"><span>Total</span><span id="cartTotal">€0</span></div>
+    <div class="sum total"><span>Total</span><span id="cartTotal">$0</span></div>
     <button class="btn btn-lime" id="checkoutBtn" type="button">Check out</button>
     <p class="note" id="checkoutNote">Online checkout opens soon. To order now, <a id="mailOrder" href="#">email us this order</a> and we'll send a payment link.</p>
   </div>

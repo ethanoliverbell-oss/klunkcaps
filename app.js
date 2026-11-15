@@ -7,7 +7,7 @@ import { RoomEnvironment } from "./vendor/RoomEnvironment.js";
 if (window.top !== window.self) { document.documentElement.style.display = "none"; try { window.top.location.replace(window.self.location.href); } catch (e) {} throw new Error("framed"); }
 
 /* ===================== Store settings ===================== */
-const STORE = { email: "hello@klunkcaps.com", currency: "EUR", locale: "en-IE", checkoutUrl: "",
+const STORE = { email: "hello@klunkcaps.com", checkoutUrl: "",
   /* Set shopifyCheckout to true once Shopify Payments is active and the store password is removed.
      The cart then goes straight to Shopify's secure checkout with these variants. */
   shopifyCheckout: false, shopifyDomain: "x0trmf-7b.myshopify.com" };
@@ -34,7 +34,7 @@ const PHOTO = {
 };
 const PRODUCTS = [
   {
-    id: "script", name: "Script", optionLabel: "Theme", price: 59,
+    id: "script", name: "Script", optionLabel: "Theme", price: { USD: 65, EUR: 59 }, blurb: "Retro keys, second alphabet",
     tag: "Retro cream and grey keys with dye-sublimated legends that won't wear off. Pick a second alphabet or another theme.",
     image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
     finish: { kind: "pbt", pattern: "script", sideLegend: false },
@@ -47,11 +47,11 @@ const PRODUCTS = [
     specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Dye-sublimated"],["Keys","142"]]
   },
   {
-    id: "topo", name: "Topo", optionLabel: "Colour",
+    id: "topo", name: "Topo", optionLabel: "Colour", blurb: "Map pattern, 17 colours",
     tag: "A topographic map pattern with legends printed on the front edge, so your backlight glows through.",
     image: IMG("S9a317d0bd35f472098bce26df3ec522cD.jpg"),
     finish: { kind: "pbt", pattern: "topo", sideLegend: true },
-    sizes: [{ id: "97", label: "97 keys", price: 25 }, { id: "133", label: "133 keys", price: 32 }],
+    sizes: [{ id: "97", label: "97 keys", price: { USD: 27, EUR: 25 } }, { id: "133", label: "133 keys", price: { USD: 35, EUR: 32 } }],
     options: [
       { name: "Matcha Green", hex: "#A9C18C", sizes: ["133"] },
       { name: "Black", hex: "#2B2D33", sizes: ["97","133"] },
@@ -74,7 +74,7 @@ const PRODUCTS = [
     specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Front, shine-through"],["Keys","97 or 133"]]
   },
   {
-    id: "phantom", name: "Phantom", optionLabel: "Colour", price: 45,
+    id: "phantom", name: "Phantom", optionLabel: "Colour", price: { USD: 49, EUR: 45 }, blurb: "XVX gradient, 7 colours",
     tag: "XVX double-shot PBT. Each key fades from deep colour to dark, with see-through letters on the top and side.",
     image: IMG("Sb72f27057c414b81a89ba2d5b5b7a961X.png"),
     finish: { kind: "pbt", pattern: "gradient", sideLegend: true },
@@ -90,14 +90,20 @@ const PRODUCTS = [
 /* ===================== Helpers ===================== */
 const $ = (s, el = document) => el.querySelector(s);
 const esc = v => String(v).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const money = n => new Intl.NumberFormat(STORE.locale, { style: "currency", currency: STORE.currency, minimumFractionDigits: n % 1 ? 2 : 0 }).format(n);
+
 const store = {
   get(k, f) { try { const v = localStorage.getItem(k); return v === null ? f : JSON.parse(v); } catch (e) { return f; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const priceOf = (p, size) => p.sizes ? p.sizes.find(s => s.id === size).price : p.price;
-const minPrice = p => p.sizes ? Math.min(...p.sizes.map(s => s.price)) : p.price;
+/* Currency: whole-number prices in US dollars or euros. Guessed from the visitor's time zone, switchable in the nav, remembered. */
+const CURRENCIES = { USD: { locale: "en-US", note: "Prices in US dollars. Sales tax, if any, is shown at checkout. Free shipping." },
+                     EUR: { locale: "en-IE", note: "Prices in euros, VAT included. Free shipping." } };
+const guessCur = () => { try { return /^America\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone) ? "USD" : "EUR"; } catch (e) { return "USD"; } };
+let CUR = store.get("klunk-cur", null); if (!CURRENCIES[CUR]) CUR = guessCur();
+const money = n => new Intl.NumberFormat(CURRENCIES[CUR].locale, { style: "currency", currency: CUR, maximumFractionDigits: 0 }).format(n);
+const priceOf = (p, size) => (p.sizes ? p.sizes.find(s => s.id === size).price : p.price)[CUR];
+const minPrice = p => p.sizes ? Math.min(...p.sizes.map(s => s.price[CUR])) : p.price[CUR];
 document.querySelectorAll(".js-email").forEach(a => { a.href = "mailto:" + STORE.email; if (a.textContent.includes("@")) a.textContent = STORE.email; });
 $("#year").textContent = new Date().getFullYear();
 
@@ -337,12 +343,14 @@ if (!reduceMotion) setInterval(() => { if (document.hidden) return; heroIdx = (h
 const cfgView = createViewer($("#cfgCanvas"), $("#cfgStage"), { follow: "stage", drag: true, autoSpin: true, scale: 1.05 });
 const state = { pid: "script", opt: "Katakana", size: "133", light: false };
 const setTabs = $("#setTabs");
-setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">OUR PICK</span>' : ""}</button>`).join("");
+const drawTabs = () => { setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">OUR PICK</span>' : ""}<small>${p.sizes ? "from " : ""}${esc(money(minPrice(p)))}</small></button>`).join(""); };
+drawTabs();
 
 function renderCfg() {
   const p = PRODUCTS.find(x => x.id === state.pid);
   let opt = p.options.find(o => o.name === state.opt) || p.options.find(o => !o.soldOut) || p.options[0]; state.opt = opt.name;
   setTabs.querySelectorAll("[data-pid]").forEach(b => { const on = b.dataset.pid === p.id; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; });
+  document.querySelectorAll("[data-pick]").forEach(b => b.setAttribute("aria-pressed", b.dataset.pick === p.id));
   $("#cfgName").textContent = p.name; $("#cfgTag").textContent = p.tag;
   $("#optLabel").firstChild.textContent = p.optionLabel; $("#optName").textContent = opt.name;
   const group = $("#optGroup");
@@ -382,6 +390,20 @@ $("#optGroup").addEventListener("click", e => { const b = e.target.closest("[dat
 $("#sizeGroup").addEventListener("click", e => { const b = e.target.closest("[data-size]"); if (!b || b.getAttribute("aria-disabled") === "true") return; state.size = b.dataset.size; renderCfg(); });
 $("#cfgPhoto").addEventListener("error", () => $("#cfgPhotoWrap").classList.add("no-img"));
 renderCfg();
+
+/* ===================== Set picker: Script first, the others one tap away ===================== */
+const SET_PHOTO = { script: IMG(PHOTO.script.Katakana, 480), topo: IMG(PHOTO.topo["Matcha Green"], 480), phantom: IMG(PHOTO.phantom.Purple, 480) };
+const drawPicker = () => { $("#setPicker").innerHTML = PRODUCTS.map(p => `<button type="button" class="set-card${p.id === "script" ? " is-pick" : ""}" data-pick="${p.id}" aria-pressed="${p.id === state.pid}">
+  <span class="set-card-img"><img src="${SET_PHOTO[p.id]}" alt="" loading="lazy" referrerpolicy="no-referrer"></span>
+  <span class="set-card-txt"><b>${p.name}</b>${p.id === "script" ? '<em>Our pick</em>' : ""}<span>${esc(p.blurb)}</span></span>
+  <span class="set-card-price">${p.sizes ? "<small>from</small>" : ""}${esc(money(minPrice(p)))}</span></button>`).join(""); };
+drawPicker();
+$("#setPicker").addEventListener("click", e => {
+  const b = e.target.closest("[data-pick]"); if (!b) return;
+  state.pid = b.dataset.pick; state.opt = null; renderCfg();
+  $(".cfg-panel").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+});
+$("#setPicker").addEventListener("error", e => { if (e.target.tagName === "IMG") e.target.parentElement.classList.add("no-img"); }, true);
 
 /* ===================== Featured Script themes ===================== */
 const FEAT_THEMES = ["Cyrillic", "Katakana", "Greek", "Cyrillic, white"];
@@ -457,3 +479,17 @@ $("#checkoutBtn").addEventListener("click", () => {
 });
 renderCart();
 window.__klunk = { PRODUCTS, state };
+
+/* ===================== Currency display ===================== */
+function renderPrices() {
+  $("#heroFrom").textContent = "From " + money(Math.min(...PRODUCTS.map(minPrice)));
+  $("#featPrice").textContent = money(minPrice(PRODUCTS.find(p => p.id === "script")));
+  $("#curNote").textContent = CURRENCIES[CUR].note;
+  document.querySelectorAll("[data-cur]").forEach(b => b.setAttribute("aria-pressed", b.dataset.cur === CUR));
+  drawTabs(); drawPicker(); renderCfg(); renderCart();
+}
+$("#curToggle").addEventListener("click", e => {
+  const b = e.target.closest("[data-cur]"); if (!b || !CURRENCIES[b.dataset.cur]) return;
+  CUR = b.dataset.cur; store.set("klunk-cur", CUR); renderPrices();
+});
+renderPrices();
