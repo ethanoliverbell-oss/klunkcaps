@@ -217,6 +217,22 @@ section{position:relative}
 .thumb-b[aria-pressed="true"]{opacity:1;border-color:#F4F4F2}
 .thumb-b:hover{opacity:1}
 .cfg-specs .wide{grid-column:1/-1}
+.promo{background:#F4F4F2;color:#141517;text-align:center;font-size:.8rem;padding:7px 14px;line-height:1.35}
+.promo b{font-weight:600}
+.cart-promo{margin:0 0 10px;font-size:.78rem;color:var(--muted)}
+.buy-trust{margin-top:16px;display:grid;gap:10px}
+.eta{margin:0;font-size:var(--s--1);color:var(--text)}
+.eta b{font-weight:600}
+.trust-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.78rem;color:var(--muted)}
+.trust-list li::before{content:"✓";margin-right:6px;color:#F4F4F2}
+.pay{margin:0;display:flex;flex-wrap:wrap;gap:5px}
+.pay span{font:500 .66rem/1 var(--f-mono);color:var(--muted);border:1px solid var(--line-2);border-radius:2px;padding:4px 6px}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(26,27,29,.96);border-top:1px solid var(--line-2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.mbar-txt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.mbar-txt b{font:600 .95rem/1.2 var(--f-head);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mbar-txt span{font-size:.8rem;color:var(--muted)}
+.mbar .btn{flex:0 0 auto;min-width:0;padding-left:20px;padding-right:20px}
+@media (max-width:760px){.mbar.show{display:flex}}
 .zoom{position:fixed;inset:0;z-index:120;background:rgba(10,11,12,.94);display:grid;place-items:center;padding:56px 16px}
 .zoom[hidden]{display:none}
 .zoom img{max-width:min(1100px,100%);max-height:100%;object-fit:contain}
@@ -411,6 +427,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
 <body>
 <a class="sr" href="#configurator">Skip to the shop</a>
 
+<div class="promo" role="note">Launch offer: <b>10% off your order</b> until 31 December, applied automatically at checkout.</div>
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="Klunk Caps home">
@@ -514,6 +531,15 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
             <div class="cfg-price"><span id="cfgPrice">$65</span><small>Free tracked shipping</small></div>
             <button class="btn btn-lime" id="addBtn" type="button">Add to cart</button>
           </div>
+          <div class="buy-trust">
+            <p class="eta" id="cfgEta"></p>
+            <ul class="trust-list">
+              <li>Free tracked shipping to the EU and US</li>
+              <li>14-day returns</li>
+              <li>Secure checkout by Shopify</li>
+            </ul>
+            <p class="pay" aria-label="Payment methods"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>PayPal</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></p>
+          </div>
           <p class="added" id="addedNote" role="status" aria-live="polite"></p>
           <p class="safety">Warning: small parts, choking hazard. Not for children under 3. <a href="legal.html#safety" style="color:inherit">Product safety info</a></p>
         </div>
@@ -567,12 +593,13 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
     <div class="sum"><span>Subtotal</span><span id="cartSub">$0</span></div>
     <div class="sum"><span>Shipping</span><span>Free</span></div>
     <div class="sum total"><span>Total</span><span id="cartTotal">$0</span></div>
+    <p class="cart-promo">Launch offer: 10% off is applied automatically at checkout.</p>
     <button class="btn btn-lime" id="checkoutBtn" type="button">Check out</button>
     <p class="note" id="checkoutNote">Online checkout opens soon. To order now, <a id="mailOrder" href="#">email us this order</a> and we'll send a payment link.</p>
   </div>
 </aside>
 
-<script type="module" src="app.js?v=14"></script>
+<script type="module" src="app.js?v=15"></script>
 <!--
 ==========================================================================
 DESIGN TOKENS
@@ -597,6 +624,10 @@ USING YOUR OWN .glb MODEL
 ==========================================================================
 -->
 <!-- Cloudflare Web Analytics (cookieless) --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2c54eb48ec014d9dbd80ce0facc22b5d"}'></script>
+<div class="mbar" id="mbar" aria-hidden="true">
+  <div class="mbar-txt"><b id="mbarName">Script</b><span id="mbarPrice"></span></div>
+  <button type="button" class="btn btn-lime" id="mbarAdd" tabindex="-1">Add to cart</button>
+</div>
 <div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Product photo" hidden>
   <img id="zoomImg" alt="" referrerpolicy="no-referrer">
   <button type="button" class="zoom-x" id="zoomClose">Close</button>

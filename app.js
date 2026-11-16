@@ -371,13 +371,19 @@ function showPhoto(i) {
   $("#cfgPhotoLbl").textContent = g.tag || gallery.optLabel;
   $("#cfgThumbs").innerHTML = gallery.list.map((t, n) => `<button type="button" class="thumb-b" data-i="${n}" aria-label="Show photo ${n + 1}${t.tag ? ", " + t.tag.toLowerCase() : ""}" aria-pressed="${n === i}"><img src="${IMG(t.id, 160)}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join("");
 }
+/* Delivery estimate: matches the 1-2 week promise (7-14 days from today). */
+(function eta() {
+  const d = n => { const x = new Date(); x.setDate(x.getDate() + n); return x; };
+  const f = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" });
+  const el = $("#cfgEta"); if (el) el.innerHTML = `Order today and it usually arrives <b>${f.format(d(7))} – ${f.format(d(14))}</b>.`;
+})();
 function renderCfg() {
   const p = PRODUCTS.find(x => x.id === state.pid);
   let opt = p.options.find(o => o.name === state.opt) || p.options.find(o => !o.soldOut) || p.options[0]; state.opt = opt.name;
   setTabs.querySelectorAll("[data-pid]").forEach(b => { const on = b.dataset.pid === p.id; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; });
   document.querySelectorAll("[data-pick]").forEach(b => b.setAttribute("aria-pressed", b.dataset.pick === p.id));
   $("#cfgName").textContent = p.name; $("#cfgTag").textContent = p.desc || p.tag;
-  $("#cfgSpecs").innerHTML = p.specs.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("") + '<div class="wide"><dt>Fits</dt><dd>MX-style switches (Cherry, Gateron, Kailh, Akko and most hot-swap boards). Keycaps only, keyboard not included.</dd></div>';
+  $("#cfgSpecs").innerHTML = p.specs.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("") + '<div class="wide"><dt>Fits</dt><dd>Any keyboard with MX-style switches: Keychron, Akko, Royal Kludge, Redragon, Corsair MX models and most hot-swap boards. Not for laptops or low-profile switches. Keycaps only, keyboard not included.</dd></div>';
   $("#optLabel").firstChild.textContent = p.optionLabel; $("#optName").textContent = opt.name;
   const group = $("#optGroup");
   if (p.optionLabel === "Colour") {
@@ -409,6 +415,9 @@ function renderCfg() {
   gallery.label = `${p.name} in ${opt.name}`; gallery.optLabel = `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
   showPhoto(0);
   $("#cfgPrice").textContent = money(priceOf(p, state.size));
+  $("#mbarName").textContent = `${p.name} · ${opt.name}${state.size ? " · " + state.size + " keys" : ""}`;
+  $("#mbarPrice").textContent = money(priceOf(p, state.size)) + " · free shipping";
+  const mb = $("#mbarAdd"); mb.disabled = !!opt.soldOut; mb.textContent = opt.soldOut ? "Sold out" : "Add to cart";
   state.light = !!p.finish.sideLegend;
   const addBtn = $("#addBtn"); addBtn.disabled = !!opt.soldOut; addBtn.textContent = opt.soldOut ? "Sold out" : "Add to cart";
   cfgView && cfgView.setConfig(p, opt, state.light);
@@ -425,6 +434,16 @@ $("#sizeGroup").addEventListener("click", e => { const b = e.target.closest("[da
 $("#cfgPhoto").addEventListener("error", () => $("#cfgPhotoWrap").classList.add("no-img"));
 $("#cfgThumbs").addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (b) showPhoto(+b.dataset.i); });
 $("#cfgPhotoBtn").addEventListener("click", () => openZoom(gallery.i));
+/* Sticky add-to-cart bar on phones: shows while the shop section is on screen but its button isn't. */
+(() => {
+  const bar = $("#mbar"), add = $("#addBtn"), sec = $("#configurator"); let secIn = false, addIn = false;
+  const upd = () => { const on = secIn && !addIn; bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", String(!on)); $("#mbarAdd").tabIndex = on ? 0 : -1; };
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => { es.forEach(e => { if (e.target === sec) secIn = e.isIntersecting; else addIn = e.isIntersecting; }); upd(); }).observe(sec);
+    new IntersectionObserver(es => { addIn = es[0].isIntersecting; upd(); }).observe(add);
+  }
+  $("#mbarAdd").addEventListener("click", () => add.click());
+})();
 /* Enlarged photo viewer */
 const zoom = $("#zoom"), zoomImg = $("#zoomImg");
 function openZoom(i) { gallery.z = i; drawZoom(); zoom.hidden = false; document.body.classList.add("zoom-open"); $("#zoomClose").focus(); }
@@ -538,7 +557,7 @@ $("#checkoutBtn").addEventListener("click", () => {
   if (STORE.shopifyCheckout) {
     const items = cart.map(l => { const v = VARIANT[[l.id, l.option, l.size || ""].join("|")]; return v ? v + ":" + l.qty : null; });
     if (bonusQty()) items.push(BONUS_VARIANT + ":" + bonusQty());
-    if (items.length && items.every(x => x && /^\d+:\d+$/.test(x))) { location.assign(`https://${STORE.shopifyDomain}/cart/${items.join(",")}`); return; }
+    if (items.length && items.every(x => x && /^\d+:\d+$/.test(x))) { location.assign(`https://${STORE.shopifyDomain}/cart/${items.join(",")}?discount=LAUNCH10`); return; }
   }
   const lines = cart.map(l => { const p = PRODUCTS.find(x => x.id === l.id); return `${l.qty} x ${p.name} (${optText(l)}): ${money(priceOf(p, l.size) * l.qty)}`; });
   $("#mailOrder").href = `mailto:${STORE.email}?subject=${encodeURIComponent("Order from klunkcaps.com")}&body=${encodeURIComponent(`Hi Klunk Caps,\n\nI'd like to order:\n\n${lines.join("\n")}\n\nTotal: ${money(total())}\n\nShipping address:\n\n`)}`;
