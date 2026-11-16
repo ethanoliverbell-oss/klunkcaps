@@ -34,11 +34,17 @@ const PHOTO = {
   phantom: { "Black":"Sc77e4e881df04cfcb9bd3c9db36082e8O", "Grey":"S5335a6982a4848ab9999a4414981ddfdx", "White":"S6466142dba804415a9b5c38396b02ea20", "Purple":"S7ebbe3b62c8b427c91a3e10355da55a9T", "Red":"S554c2cc8a210491f84602faf7bcf02bc2", "Green":"S491cd429c2f7487ab8b7ba16562bd301X" },
   script: { "English + Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Japanese layout":"Sc4d2ac37414443a790e55ac0d92774b5W", "Russian layout":"S77c7bd1c6e744fefa81fa70836d62ca2U", "English + Russian (white)":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
 };
-/* Extra supplier photos per set, shown as thumbnails and in the enlarged view. */
-const GALLERY = {
-  script: ["S40ca95f281d4462989f228ad8b8c30998", "S5a5e484ebfbb4c0e9482db23d8f361e01", "S08726d41b08d4a3d8d33764093da2a3dB", "S32c53eaf06af4c8288593b05ec5ccc75g"],
-  topo: ["S9a317d0bd35f472098bce26df3ec522cD", "Sdef712ed2a2440a49fd9467a6d0efba4r", "S65433a4ca6c74670a8a3a2ca6eeba658T", "S1f610f1587bf4d5e9baa7cb46f2cf366S"],
-  phantom: ["S59c9f123ce054465abe12eef1db05c111", "S14d2375704eb45bcb1d5aa0f6fc1a2a1u", "S1a579d43837e42cfba6214a2a73f52f7n", "S21d12e71330445d4a0f083b7af42f5b1a"]
+/* Extra supplier photos. COLOUR_PHOTOS: shots of that exact colour/lettering. EXTRA: shots of the same set in
+   another colour, labelled as such so nobody is misled. Photos are the supplier's own, served from our Shopify store. */
+const COLOUR_PHOTOS = {
+  script: { "Japanese layout": ["S6bf2d1509ae44a6496434ea84c163f550", "S40ca95f281d4462989f228ad8b8c30998", "S5a5e484ebfbb4c0e9482db23d8f361e01", "S08726d41b08d4a3d8d33764093da2a3dB", "S32c53eaf06af4c8288593b05ec5ccc75g"] },
+  topo: { "White": ["S1a0c912dacb34436a05ede536080774bH"], "Blackberry": ["S9e36438287f449b0bcc283bbd593d333R"], "Black": ["S2c511dd2104c4846936f4c280dd897759", "S9a317d0bd35f472098bce26df3ec522cD"] },
+  phantom: { "Purple": ["S59c9f123ce054465abe12eef1db05c111", "S14d2375704eb45bcb1d5aa0f6fc1a2a1u", "Scba3a0ab5d3a45158fb753c59ff62eee8"], "Red": ["S21d12e71330445d4a0f083b7af42f5b1a"], "Grey": ["S1a579d43837e42cfba6214a2a73f52f7n"] }
+};
+const EXTRA = {
+  script: { ids: ["S6bf2d1509ae44a6496434ea84c163f550", "S40ca95f281d4462989f228ad8b8c30998", "S5a5e484ebfbb4c0e9482db23d8f361e01", "S08726d41b08d4a3d8d33764093da2a3dB"], label: "JAPANESE LAYOUT SHOWN" },
+  topo: { ids: ["S9a317d0bd35f472098bce26df3ec522cD", "S7e76e45764da4aba9801dc4a1d972278K", "Sdef712ed2a2440a49fd9467a6d0efba4r", "S65433a4ca6c74670a8a3a2ca6eeba658T", "S1f610f1587bf4d5e9baa7cb46f2cf366S", "S82b22243fe1a4ba584f0ba4ae3ecccfe2"], label: "OTHER COLOUR SHOWN" },
+  phantom: { ids: ["S59c9f123ce054465abe12eef1db05c111", "S14d2375704eb45bcb1d5aa0f6fc1a2a1u", "S1a579d43837e42cfba6214a2a73f52f7n", "S21d12e71330445d4a0f083b7af42f5b1a", "Scba3a0ab5d3a45158fb753c59ff62eee8"], label: "OTHER COLOUR SHOWN" }
 };
 const PRODUCTS = [
   {
@@ -360,10 +366,10 @@ drawTabs();
 
 const gallery = { list: [], i: 0, z: 0, label: "", optLabel: "" };
 function showPhoto(i) {
-  gallery.i = i; const id = gallery.list[i], photo = $("#cfgPhoto"), wrapP = $("#cfgPhotoWrap");
+  gallery.i = i; const g = gallery.list[i] || {}, id = g.id, photo = $("#cfgPhoto"), wrapP = $("#cfgPhotoWrap");
   if (id) { wrapP.classList.remove("no-img"); photo.src = IMG(id, 900); photo.alt = `${gallery.label}, photo ${i + 1} of ${gallery.list.length}`; }
-  $("#cfgPhotoLbl").textContent = i === 0 ? gallery.optLabel : `PHOTO ${i + 1} OF ${gallery.list.length}`;
-  $("#cfgThumbs").innerHTML = gallery.list.map((g, n) => `<button type="button" class="thumb-b" data-i="${n}" aria-label="Show photo ${n + 1}" aria-pressed="${n === i}"><img src="${IMG(g, 160)}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join("");
+  $("#cfgPhotoLbl").textContent = g.tag || gallery.optLabel;
+  $("#cfgThumbs").innerHTML = gallery.list.map((t, n) => `<button type="button" class="thumb-b" data-i="${n}" aria-label="Show photo ${n + 1}${t.tag ? ", " + t.tag.toLowerCase() : ""}" aria-pressed="${n === i}"><img src="${IMG(t.id, 160)}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join("");
 }
 function renderCfg() {
   const p = PRODUCTS.find(x => x.id === state.pid);
@@ -394,8 +400,12 @@ function renderCfg() {
       return `<button type="button" class="opt" role="radio" data-size="${s.id}" aria-checked="${s.id === state.size}" aria-disabled="${!ok}" title="${ok ? "" : opt.name + " isn't made in this size"}">${s.label}</button>`;
     }).join("");
   } else { sizeWrap.hidden = true; state.size = null; }
-  const ph = (PHOTO[p.id] || {})[opt.name];
-  gallery.list = [ph, ...(GALLERY[p.id] || [])].filter(Boolean).filter((x, i, l) => l.indexOf(x) === i);
+  const ph = (PHOTO[p.id] || {})[opt.name], own = [ph, ...((COLOUR_PHOTOS[p.id] || {})[opt.name] || [])].filter(Boolean);
+  const ex = EXTRA[p.id] || { ids: [], label: "" };
+  const seen = new Set(), list = [];
+  own.forEach(id => { if (!seen.has(id)) { seen.add(id); list.push({ id, tag: "" }); } });
+  ex.ids.forEach(id => { if (!seen.has(id)) { seen.add(id); list.push({ id, tag: ex.label }); } });
+  gallery.list = list;
   gallery.label = `${p.name} in ${opt.name}`; gallery.optLabel = `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
   showPhoto(0);
   $("#cfgPrice").textContent = money(priceOf(p, state.size));
@@ -419,7 +429,7 @@ $("#cfgPhotoBtn").addEventListener("click", () => openZoom(gallery.i));
 const zoom = $("#zoom"), zoomImg = $("#zoomImg");
 function openZoom(i) { gallery.z = i; drawZoom(); zoom.hidden = false; document.body.classList.add("zoom-open"); $("#zoomClose").focus(); }
 function closeZoom() { zoom.hidden = true; document.body.classList.remove("zoom-open"); $("#cfgPhotoBtn").focus({ preventScroll: true }); }
-function drawZoom() { const n = gallery.list.length; zoomImg.src = IMG(gallery.list[gallery.z], 1600); zoomImg.alt = gallery.label + `, photo ${gallery.z + 1} of ${n}`; $("#zoomCount").textContent = `${gallery.z + 1} / ${n}`; $("#zoomPrev").hidden = $("#zoomNext").hidden = n < 2; }
+function drawZoom() { const n = gallery.list.length; const g = gallery.list[gallery.z]; zoomImg.src = IMG(g.id, 1600); zoomImg.alt = gallery.label + `, photo ${gallery.z + 1} of ${n}`; $("#zoomCount").textContent = `${gallery.z + 1} / ${n}` + (g.tag ? ` · ${g.tag.charAt(0) + g.tag.slice(1).toLowerCase()}` : ""); $("#zoomPrev").hidden = $("#zoomNext").hidden = n < 2; }
 const stepZoom = d => { const n = gallery.list.length; gallery.z = (gallery.z + d + n) % n; drawZoom(); };
 $("#zoomClose").addEventListener("click", closeZoom); $("#zoomPrev").addEventListener("click", () => stepZoom(-1)); $("#zoomNext").addEventListener("click", () => stepZoom(1));
 zoom.addEventListener("click", e => { if (e.target === zoom) closeZoom(); });
