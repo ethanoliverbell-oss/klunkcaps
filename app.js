@@ -31,13 +31,20 @@ const BONUS_VARIANT = 54826835411272;
 const IMG = (id, w = 960) => "https://cdn.shopify.com/s/files/1/0996/5702/3816/files/" + id.replace(/\.(jpg|png|webp)$/, "") + ".webp?width=" + w;
 const PHOTO = {
   topo: { "Matcha Green":"Sa9da428e0c954f8996a5a831684d92ddR", "Black":"Sc9470d7b5f1a49cab10993d3bb4375f2d", "White":"Sc4c59fca0a354ca5b86b1f6537adfb7eu", "Blackberry":"S22dc2f52fcca4f34a45bed8db17b230ef", "Polar Day":"Sa6be2f33a0f34ee4aacc0db7eb25d189R", "Sky Blue":"Sc2b52c34a4e344c58692a924498a5a6cY", "Lavender":"S7c400ddec95a4a8ab4449fb4ab2c06d6z", "Violet":"Sdbfd17b6617349238fcfdee636dc61d25", "Blush":"S206b550017ee46138b74600862a4ee1cU", "Lucky Red":"S48f4c2473ee1490abf64aaec3fc27f09O", "Red Bean":"S2c673b76a02744ed86bad193cd0f16fb5", "Green Vine":"S9fd5c19059f641e8aee8175cea2072e7q", "Red":"S3c9629e4c3194bb8b6cf1e65ef1631f6m", "Pink":"Se0bb4b2ff70142e18a2aa9d2a8db9f038", "Purple":"S597e4cf9fc394cd8866ba6998de881818", "Blue":"Sf8ed291715bd471b82ccfd691ba7efcfr", "Green":"S0ce35850ea9f44b28f0e25cb64609878T" },
-  phantom: { "Black":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Grey":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "White":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Purple":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Red":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Green":"Sb72f27057c414b81a89ba2d5b5b7a961X.png", "Pink":"Sb72f27057c414b81a89ba2d5b5b7a961X.png" },
+  phantom: { "Black":"Sc77e4e881df04cfcb9bd3c9db36082e8O", "Grey":"S5335a6982a4848ab9999a4414981ddfdx", "White":"S6466142dba804415a9b5c38396b02ea20", "Purple":"S7ebbe3b62c8b427c91a3e10355da55a9T", "Red":"S554c2cc8a210491f84602faf7bcf02bc2", "Green":"S491cd429c2f7487ab8b7ba16562bd301X" },
   script: { "English + Greek":"S6fef42d908084ab6b08a56331c7ead01j", "Japanese layout":"Sc4d2ac37414443a790e55ac0d92774b5W", "Russian layout":"S77c7bd1c6e744fefa81fa70836d62ca2U", "English + Russian (white)":"S64f375bef2704b35839decc51fbd3e5d3", "Handmade":"Sd3007ca21b294a409af93cd71602e85e9", "Spirit":"S4d1be74673454f3ca23d08bf92f0155cA", "Fate":"Sd879a2a6cc714bd98557f86a61d97224g" }
+};
+/* Extra supplier photos per set, shown as thumbnails and in the enlarged view. */
+const GALLERY = {
+  script: ["S40ca95f281d4462989f228ad8b8c30998", "S5a5e484ebfbb4c0e9482db23d8f361e01", "S08726d41b08d4a3d8d33764093da2a3dB", "S32c53eaf06af4c8288593b05ec5ccc75g"],
+  topo: ["S9a317d0bd35f472098bce26df3ec522cD", "Sdef712ed2a2440a49fd9467a6d0efba4r", "S65433a4ca6c74670a8a3a2ca6eeba658T", "S1f610f1587bf4d5e9baa7cb46f2cf366S"],
+  phantom: ["S59c9f123ce054465abe12eef1db05c111", "S14d2375704eb45bcb1d5aa0f6fc1a2a1u", "S1a579d43837e42cfba6214a2a73f52f7n", "S21d12e71330445d4a0f083b7af42f5b1a"]
 };
 const PRODUCTS = [
   {
     id: "script", name: "Script", optionLabel: "Lettering", price: { USD: 65, EUR: 59 }, blurb: "Retro keys, English + a second alphabet",
     tag: "Retro cream and grey keys with dyed-in letters that never wear off. Choose English letters with a small second alphabet, or a full Russian or Japanese layout.",
+    desc: "Cream and warm-grey keys inspired by vintage office keyboards, with English letters and a small second alphabet, or a full Russian or Japanese layout. The letters are dyed into thick PBT, so they never fade or rub off.",
     image: IMG("S6bf2d1509ae44a6496434ea84c163f550.jpg"),
     finish: { kind: "pbt", pattern: "script", sideLegend: false },
     options: [
@@ -46,12 +53,13 @@ const PRODUCTS = [
       { name: "Handmade", hex: "#E7E1D2", sub: "✱", soldOut: true }, { name: "Spirit", hex: "#E7E1D2", sub: "◐", soldOut: true },
       { name: "Fate", hex: "#E7E1D2", sub: "✦", soldOut: true }
     ],
-    specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Dye-sublimated"],["Keys","142"]]
+    specs: [["Keys","142, for full-size and compact layouts"],["Profile","Cherry"],["Material","Thick PBT"],["Legends","Dye-sublimated, never wear off"]]
   },
   {
     id: "topo", name: "Topo", optionLabel: "Colour", blurb: "Map pattern, 17 colours",
     bonus: { title: "4 translucent accent keys", text: "Comes with every Topo set: lightning-bolt WASD keys that let your backlight shine through.", image: IMG("S7879e38ce2ab448f8cf491d9a55e63423.jpg", 160) },
     tag: "A topographic map pattern with legends printed on the front edge, so your backlight glows through.",
+    desc: "Contour lines like a hiking map run across every key. The tops stay clean, while the see-through letters on the front edge light up with your keyboard's backlight.",
     image: IMG("S9a317d0bd35f472098bce26df3ec522cD.jpg"),
     finish: { kind: "pbt", pattern: "topo", sideLegend: true },
     sizes: [{ id: "97", label: "97 keys", price: { USD: 27, EUR: 25 } }, { id: "133", label: "133 keys", price: { USD: 35, EUR: 32 } }],
@@ -74,18 +82,19 @@ const PRODUCTS = [
       { name: "Blue", hex: "#3D6FD1", sizes: ["97"] },
       { name: "Green", hex: "#53A36B", sizes: ["97"] }
     ],
-    specs: [["Profile","Cherry"],["Material","PBT"],["Legends","Front, shine-through"],["Keys","97 or 133"]]
+    specs: [["Keys","97 (60% to 87-key boards) or 133 (full-size)"],["Profile","Cherry"],["Material","PBT"],["Legends","Front edge, shine-through"]]
   },
   {
     id: "phantom", name: "Phantom", optionLabel: "Colour", price: { USD: 49, EUR: 45 }, blurb: "XVX gradient, 6 colours",
-    tag: "XVX double-shot PBT. Each key fades from deep colour to dark, with see-through letters on the top and side.",
+    tag: "XVX double-shot PBT. Each key fades from a rich colour into near-black, with see-through letters on the front edge.",
+    desc: "Each key fades from a rich colour into near-black. The letters are double-shot, moulded into the key rather than printed on, so they can't wear away, and they sit on the front edge so your backlight glows through.",
     image: IMG("Sb72f27057c414b81a89ba2d5b5b7a961X.png"),
     finish: { kind: "pbt", pattern: "gradient", sideLegend: true },
     options: [
-      { name: "Black", hex: "#3A3D44" }, { name: "Grey", hex: "#8D929A" }, { name: "White", hex: "#ECEDEF" },
+      { name: "Black", hex: "#3A3D44" }, { name: "Grey", hex: "#8D929A" }, { name: "White", hex: "#ECEDEF", note: "The White set has 149 keys, including a few black accent keys." },
       { name: "Purple", hex: "#7353B0" }, { name: "Red", hex: "#C04A3B" }, { name: "Green", hex: "#5D9A63" }
     ],
-    specs: [["Brand","XVX"],["Material","PBT, double-shot"],["Legends","Top and side, shine-through"],["Keys","Full set"]]
+    specs: [["Keys","136 (White: 149), full-size and compact"],["Profile","OEM"],["Material","Double-shot PBT, by XVX"],["Legends","Front edge, shine-through"]]
   }
 
 ];
@@ -349,12 +358,20 @@ const setTabs = $("#setTabs");
 const drawTabs = () => { setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">OUR PICK</span>' : ""}<small>${p.sizes ? "from " : ""}${esc(money(minPrice(p)))}</small></button>`).join(""); };
 drawTabs();
 
+const gallery = { list: [], i: 0, z: 0, label: "", optLabel: "" };
+function showPhoto(i) {
+  gallery.i = i; const id = gallery.list[i], photo = $("#cfgPhoto"), wrapP = $("#cfgPhotoWrap");
+  if (id) { wrapP.classList.remove("no-img"); photo.src = IMG(id, 900); photo.alt = `${gallery.label}, photo ${i + 1} of ${gallery.list.length}`; }
+  $("#cfgPhotoLbl").textContent = i === 0 ? gallery.optLabel : `PHOTO ${i + 1} OF ${gallery.list.length}`;
+  $("#cfgThumbs").innerHTML = gallery.list.map((g, n) => `<button type="button" class="thumb-b" data-i="${n}" aria-label="Show photo ${n + 1}" aria-pressed="${n === i}"><img src="${IMG(g, 160)}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join("");
+}
 function renderCfg() {
   const p = PRODUCTS.find(x => x.id === state.pid);
   let opt = p.options.find(o => o.name === state.opt) || p.options.find(o => !o.soldOut) || p.options[0]; state.opt = opt.name;
   setTabs.querySelectorAll("[data-pid]").forEach(b => { const on = b.dataset.pid === p.id; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; });
   document.querySelectorAll("[data-pick]").forEach(b => b.setAttribute("aria-pressed", b.dataset.pick === p.id));
-  $("#cfgName").textContent = p.name; $("#cfgTag").textContent = p.tag;
+  $("#cfgName").textContent = p.name; $("#cfgTag").textContent = p.desc || p.tag;
+  $("#cfgSpecs").innerHTML = p.specs.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("") + '<div class="wide"><dt>Fits</dt><dd>MX-style switches (Cherry, Gateron, Kailh, Akko and most hot-swap boards). Keycaps only, keyboard not included.</dd></div>';
   $("#optLabel").firstChild.textContent = p.optionLabel; $("#optName").textContent = opt.name;
   const group = $("#optGroup");
   if (p.optionLabel === "Colour") {
@@ -377,9 +394,10 @@ function renderCfg() {
       return `<button type="button" class="opt" role="radio" data-size="${s.id}" aria-checked="${s.id === state.size}" aria-disabled="${!ok}" title="${ok ? "" : opt.name + " isn't made in this size"}">${s.label}</button>`;
     }).join("");
   } else { sizeWrap.hidden = true; state.size = null; }
-  const ph = (PHOTO[p.id] || {})[opt.name], photo = $("#cfgPhoto"), wrapP = $("#cfgPhotoWrap");
-  if (ph) { wrapP.classList.remove("no-img"); photo.src = IMG(ph, 640); photo.alt = `${p.name} in ${opt.name} on a full keyboard`; }
-  $("#cfgPhotoLbl").textContent = p.id === "phantom" ? "PHANTOM · 4 OF 6 COLOURS" : `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
+  const ph = (PHOTO[p.id] || {})[opt.name];
+  gallery.list = [ph, ...(GALLERY[p.id] || [])].filter(Boolean).filter((x, i, l) => l.indexOf(x) === i);
+  gallery.label = `${p.name} in ${opt.name}`; gallery.optLabel = `${p.name.toUpperCase()} · ${opt.name.toUpperCase()}`;
+  showPhoto(0);
   $("#cfgPrice").textContent = money(priceOf(p, state.size));
   state.light = !!p.finish.sideLegend;
   const addBtn = $("#addBtn"); addBtn.disabled = !!opt.soldOut; addBtn.textContent = opt.soldOut ? "Sold out" : "Add to cart";
@@ -395,6 +413,17 @@ setTabs.addEventListener("keydown", e => {
 $("#optGroup").addEventListener("click", e => { const b = e.target.closest("[data-opt]"); if (!b) return; state.opt = b.dataset.opt; renderCfg(); });
 $("#sizeGroup").addEventListener("click", e => { const b = e.target.closest("[data-size]"); if (!b || b.getAttribute("aria-disabled") === "true") return; state.size = b.dataset.size; renderCfg(); });
 $("#cfgPhoto").addEventListener("error", () => $("#cfgPhotoWrap").classList.add("no-img"));
+$("#cfgThumbs").addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (b) showPhoto(+b.dataset.i); });
+$("#cfgPhotoBtn").addEventListener("click", () => openZoom(gallery.i));
+/* Enlarged photo viewer */
+const zoom = $("#zoom"), zoomImg = $("#zoomImg");
+function openZoom(i) { gallery.z = i; drawZoom(); zoom.hidden = false; document.body.classList.add("zoom-open"); $("#zoomClose").focus(); }
+function closeZoom() { zoom.hidden = true; document.body.classList.remove("zoom-open"); $("#cfgPhotoBtn").focus({ preventScroll: true }); }
+function drawZoom() { const n = gallery.list.length; zoomImg.src = IMG(gallery.list[gallery.z], 1600); zoomImg.alt = gallery.label + `, photo ${gallery.z + 1} of ${n}`; $("#zoomCount").textContent = `${gallery.z + 1} / ${n}`; $("#zoomPrev").hidden = $("#zoomNext").hidden = n < 2; }
+const stepZoom = d => { const n = gallery.list.length; gallery.z = (gallery.z + d + n) % n; drawZoom(); };
+$("#zoomClose").addEventListener("click", closeZoom); $("#zoomPrev").addEventListener("click", () => stepZoom(-1)); $("#zoomNext").addEventListener("click", () => stepZoom(1));
+zoom.addEventListener("click", e => { if (e.target === zoom) closeZoom(); });
+document.addEventListener("keydown", e => { if (zoom.hidden) return; if (e.key === "Escape") closeZoom(); if (e.key === "ArrowLeft") stepZoom(-1); if (e.key === "ArrowRight") stepZoom(1); });
 renderCfg();
 
 /* ===================== Set picker: Script first, the others one tap away ===================== */

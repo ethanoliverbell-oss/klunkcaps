@@ -162,7 +162,7 @@ section{position:relative}
 .set-tab:hover{color:var(--text)}
 .set-tab[aria-selected="true"]{background:#F4F4F2;color:#141517}
 .cfg-name{font-size:var(--s-2);margin-bottom:8px}
-.cfg-tag{color:var(--muted);margin-bottom:22px;min-height:3.2em}
+.cfg-tag{color:var(--muted);margin-bottom:18px;min-height:3.2em;line-height:1.55}
 .cfg-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
 .cfg-label{font-size:var(--s--1);color:var(--muted)}
 .cfg-label output{color:var(--text);font-weight:500;margin-left:.3em}
@@ -206,11 +206,28 @@ section{position:relative}
 .shot.no-img::after{content:attr(data-name);position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-head);font-size:1.6rem;color:var(--dim);background:repeating-linear-gradient(45deg,#232427 0 10px,#26272A 10px 20px)}
 .shot.no-img img{visibility:hidden}
 @media (max-width:800px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px}.shot:nth-child(4){grid-column:span 1}}
-.cfg-photo{position:relative;margin:0 0 24px;aspect-ratio:16/9;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
-.cfg-photo img{width:100%;height:100%;object-fit:cover;transition:opacity .25s}
+.cfg-photo{position:relative;margin:0 0 10px;aspect-ratio:4/3;overflow:hidden;background:#141517;border:1px solid var(--line)}
+.photo-btn{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.photo-btn:focus-visible{outline:2px solid #F4F4F2;outline-offset:-2px}
+.cfg-photo img{width:100%;height:100%;object-fit:contain;transition:opacity .25s}
+.zoom-hint{position:absolute;right:0;bottom:0;padding:6px 9px;background:#1A1B1D;font-size:.72rem;color:var(--muted);pointer-events:none}
+.thumbs{display:flex;gap:8px;margin:0 0 24px;overflow-x:auto}
+.thumb-b{flex:0 0 auto;width:58px;height:58px;padding:0;border:1px solid var(--line);border-radius:2px;background:#141517;cursor:pointer;overflow:hidden;opacity:.7}
+.thumb-b img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb-b[aria-pressed="true"]{opacity:1;border-color:#F4F4F2}
+.thumb-b:hover{opacity:1}
+.cfg-specs .wide{grid-column:1/-1}
+.zoom{position:fixed;inset:0;z-index:120;background:rgba(10,11,12,.94);display:grid;place-items:center;padding:56px 16px}
+.zoom[hidden]{display:none}
+.zoom img{max-width:min(1100px,100%);max-height:100%;object-fit:contain}
+.zoom-x{position:absolute;top:14px;right:16px;background:none;border:1px solid var(--line-2);color:var(--text);border-radius:2px;padding:8px 14px;font:500 .85rem/1 var(--f-body);cursor:pointer}
+.zoom-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:64px;border:0;background:rgba(255,255,255,.06);color:#fff;font-size:2rem;cursor:pointer}
+.zoom-nav.prev{left:8px}.zoom-nav.next{right:8px}
+.zoom-count{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.8rem}
+body.zoom-open{overflow:hidden}
 .cfg-photo .lbl{position:absolute;left:0;top:0;padding:6px 9px;background:#1A1B1D;font-family:var(--f-mono);font-size:.68rem;color:var(--muted)}
 .cfg-photo.no-img img{visibility:hidden}
-.cfg-photo.no-img::after{content:"Photo loads on klunkcaps.com";position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:.8rem;background:repeating-linear-gradient(45deg,#1E1F22 0 10px,#222326 10px 20px)}
+.cfg-photo.no-img::after{content:"Photo loads on klunkcaps.com";position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:.8rem;background:repeating-linear-gradient(45deg,#1E1F22 0 10px,#222326 10px 20px);pointer-events:none}
 
 /* Specs breakdown */
 .spec-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,3vw,36px)}
@@ -323,7 +340,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
 .feat-photo img{width:100%;height:100%;object-fit:cover}
 .feat-photo .lbl{position:absolute;left:0;top:0;padding:7px 10px;background:#F4F4F2;color:#141517;font:600 .7rem/1 var(--f-mono)}
 .feat-photo.no-img img{visibility:hidden}
-.feat-photo.no-img::after{content:"Photo loads on klunkcaps.com";position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:.8rem;background:repeating-linear-gradient(45deg,#1E1F22 0 10px,#222326 10px 20px)}
+.feat-photo.no-img::after{content:"Photo loads on klunkcaps.com";position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:.8rem;background:repeating-linear-gradient(45deg,#1E1F22 0 10px,#222326 10px 20px);pointer-events:none}
 .feat h2{font-size:var(--s-3);margin-bottom:16px}
 .feat-lede{color:var(--muted);max-width:44ch;margin-bottom:24px}
 .feat-list{list-style:none;padding:0;margin:0 0 28px;border-top:1px solid var(--line)}
@@ -464,9 +481,11 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
 
         <div class="cfg-panel glass">
           <div class="set-tabs" role="tablist" aria-label="Keycap set" id="setTabs"></div>
-          <figure class="cfg-photo" id="cfgPhotoWrap"><img id="cfgPhoto" alt="" referrerpolicy="no-referrer"><span class="lbl" id="cfgPhotoLbl">ON A FULL BOARD</span></figure>
+          <figure class="cfg-photo" id="cfgPhotoWrap"><button type="button" class="photo-btn" id="cfgPhotoBtn" aria-label="Enlarge photo"><img id="cfgPhoto" alt="" referrerpolicy="no-referrer"></button><span class="lbl" id="cfgPhotoLbl">ON A FULL BOARD</span><span class="zoom-hint" aria-hidden="true">Tap to enlarge</span></figure>
+          <div class="thumbs" id="cfgThumbs" aria-label="More photos"></div>
           <h3 class="cfg-name" id="cfgName">Topo</h3>
           <p class="cfg-tag" id="cfgTag"></p>
+          <dl class="cfg-specs" id="cfgSpecs"></dl>
           <div class="cfg-row"><span class="cfg-label" id="optLabel">Colour<output id="optName"></output></span></div>
           <div id="optGroup" role="radiogroup" aria-labelledby="optLabel"></div>
           <p class="opt-note" id="optNote" aria-live="polite" hidden></p>
@@ -540,7 +559,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
   </div>
 </aside>
 
-<script type="module" src="app.js?v=11"></script>
+<script type="module" src="app.js?v=12"></script>
 <!--
 ==========================================================================
 DESIGN TOKENS
@@ -565,5 +584,12 @@ USING YOUR OWN .glb MODEL
 ==========================================================================
 -->
 <!-- Cloudflare Web Analytics (cookieless) --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2c54eb48ec014d9dbd80ce0facc22b5d"}'></script>
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Product photo" hidden>
+  <img id="zoomImg" alt="" referrerpolicy="no-referrer">
+  <button type="button" class="zoom-x" id="zoomClose">Close</button>
+  <button type="button" class="zoom-nav prev" id="zoomPrev" aria-label="Previous photo">‹</button>
+  <button type="button" class="zoom-nav next" id="zoomNext" aria-label="Next photo">›</button>
+  <span class="zoom-count" id="zoomCount"></span>
+</div>
 </body>
 </html>
