@@ -211,8 +211,8 @@ section{position:relative}
 .photo-btn:focus-visible{outline:2px solid #F4F4F2;outline-offset:-2px}
 .cfg-photo img{width:100%;height:100%;object-fit:contain;transition:opacity .25s}
 .zoom-hint{position:absolute;right:0;bottom:0;padding:6px 9px;background:#1A1B1D;font-size:.72rem;color:var(--muted);pointer-events:none}
-.thumbs{display:flex;gap:8px;margin:0 0 24px;overflow-x:auto}
-.thumb-b{flex:0 0 auto;width:58px;height:58px;padding:0;border:1px solid var(--line);border-radius:2px;background:#141517;cursor:pointer;overflow:hidden;opacity:.7}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.thumb-b{flex:0 0 auto;width:52px;height:52px;padding:0;border:1px solid var(--line);border-radius:2px;background:#141517;cursor:pointer;overflow:hidden;opacity:.7}
 .thumb-b img{width:100%;height:100%;object-fit:cover;display:block}
 .thumb-b[aria-pressed="true"]{opacity:1;border-color:#F4F4F2}
 .thumb-b:hover{opacity:1}
