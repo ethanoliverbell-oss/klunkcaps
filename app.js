@@ -348,7 +348,7 @@ function createViewer(canvas, stageEl, { follow = "window", drag = false, autoSp
 const hero = createViewer($("#heroCanvas"), $("#heroStage"), { follow: "window", scale: 1.05 });
 const heroTag = $(".stage-tag");
 let heroIdx = 0;
-const HERO_CYCLE = [["script", "English + Greek"], ["script", "English + Russian (white)"], ["phantom", "Purple"], ["script", "Japanese layout"], ["topo", "Matcha Green"]];
+const HERO_CYCLE = [["script", "English + Greek"], ["topo", "Matcha Green"], ["phantom", "Purple"], ["script", "English + Russian (white)"], ["topo", "Black"], ["phantom", "Red"]];
 function heroShow([pid, oname]) {
   const p = PRODUCTS.find(x => x.id === pid), o = p.options.find(x => x.name === oname);
   hero && hero.setConfig(p, o, pid !== "script");
@@ -361,7 +361,7 @@ if (!reduceMotion) setInterval(() => { if (document.hidden) return; heroIdx = (h
 const cfgView = createViewer($("#cfgCanvas"), $("#cfgStage"), { follow: "stage", drag: true, autoSpin: true, scale: 1.05 });
 const state = { pid: "script", opt: "English + Greek", size: "133", light: false };
 const setTabs = $("#setTabs");
-const drawTabs = () => { setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}${p.id === "script" ? '<span class="pick">OUR PICK</span>' : ""}<small>${p.sizes ? "from " : ""}${esc(money(minPrice(p)))}</small></button>`).join(""); };
+const drawTabs = () => { setTabs.innerHTML = PRODUCTS.map(p => `<button class="set-tab" role="tab" type="button" data-pid="${p.id}" aria-selected="false">${p.name}<small>${p.sizes ? "from " : ""}${esc(money(minPrice(p)))}</small></button>`).join(""); };
 drawTabs();
 
 const gallery = { list: [], i: 0, z: 0, label: "", optLabel: "" };
@@ -438,9 +438,9 @@ renderCfg();
 
 /* ===================== Set picker: Script first, the others one tap away ===================== */
 const SET_PHOTO = { script: IMG(PHOTO.script["English + Greek"], 480), topo: IMG(PHOTO.topo["Matcha Green"], 480), phantom: IMG(PHOTO.phantom.Purple, 480) };
-const drawPicker = () => { $("#setPicker").innerHTML = PRODUCTS.map(p => `<button type="button" class="set-card${p.id === "script" ? " is-pick" : ""}" data-pick="${p.id}" aria-pressed="${p.id === state.pid}">
+const drawPicker = () => { $("#setPicker").innerHTML = PRODUCTS.map(p => `<button type="button" class="set-card" data-pick="${p.id}" aria-pressed="${p.id === state.pid}">
   <span class="set-card-img"><img src="${SET_PHOTO[p.id]}" alt="" loading="lazy" referrerpolicy="no-referrer"></span>
-  <span class="set-card-txt"><b>${p.name}</b>${p.id === "script" ? '<em>Our pick</em>' : ""}${p.bonus ? '<em>Bonus keys</em>' : ""}<span>${esc(p.blurb)}</span></span>
+  <span class="set-card-txt"><b>${p.name}</b>${p.bonus ? '<em>Bonus keys</em>' : ""}<span>${esc(p.blurb)}</span></span>
   <span class="set-card-price">${p.sizes ? "<small>from</small>" : ""}${esc(money(minPrice(p)))}</span></button>`).join(""); };
 drawPicker();
 $("#setPicker").addEventListener("click", e => {
@@ -451,12 +451,26 @@ $("#setPicker").addEventListener("click", e => {
 $("#setPicker").addEventListener("error", e => { if (e.target.tagName === "IMG") e.target.parentElement.classList.add("no-img"); }, true);
 
 /* ===================== Featured Script themes ===================== */
-const FEAT_THEMES = ["English + Greek", "English + Russian (white)", "Russian layout", "Japanese layout"];
-$("#themes").innerHTML = FEAT_THEMES.map(t => `<button type="button" class="theme" data-theme="${t}" aria-label="Choose Script in ${t}"><img src="${IMG(PHOTO.script[t], 240)}" alt="" loading="lazy" referrerpolicy="no-referrer"><span>${t}</span></button>`).join("");
-const goScript = t => { state.pid = "script"; state.opt = t; renderCfg(); $("#configurator").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); };
-$("#themes").addEventListener("click", e => { const b = e.target.closest("[data-theme]"); if (b) goScript(b.dataset.theme); });
-$("#featGo").addEventListener("click", e => { e.preventDefault(); goScript(state.pid === "script" ? state.opt : "English + Greek"); });
-document.querySelectorAll(".feat-photo img, .theme img").forEach(img => { const f = () => img.parentElement.classList.add("no-img"); img.addEventListener("error", f); if (img.complete && img.naturalWidth === 0) f(); });
+/* Three equal set cards */
+const SET_CARDS = {
+  script: { img: "S6bf2d1509ae44a6496434ea84c163f550", lbl: "JAPANESE LAYOUT SHOWN", line: "Retro cream and grey keys with English letters and a second alphabet, or a full Russian or Japanese layout.", count: "4 letterings" },
+  topo: { img: "S9a317d0bd35f472098bce26df3ec522cD", lbl: "BLACK SHOWN", line: "A topographic map pattern with front-edge letters that glow with your backlight. Bonus accent keys included.", count: "17 colours" },
+  phantom: { img: "S59c9f123ce054465abe12eef1db05c111", lbl: "PURPLE SHOWN", line: "XVX double-shot keys that fade from rich colour into near-black, with letters that can't wear off.", count: "6 colours" }
+};
+function drawSets() {
+  $("#setsGrid").innerHTML = PRODUCTS.map(p => { const c = SET_CARDS[p.id]; const opts = p.options.filter(o => !o.soldOut);
+    return `<button type="button" class="set-big" data-set="${p.id}" aria-label="See ${p.name} in the shop">
+      <span class="set-big-img"><img src="${IMG(c.img, 720)}" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="lbl">${c.lbl}</span></span>
+      <span class="set-big-body">
+        <span class="set-big-top"><b>${p.name}</b><span>${p.sizes ? "<small>from</small>" : ""}${esc(money(minPrice(p)))}</span></span>
+        <p>${esc(c.line)}</p>
+        <span class="set-big-dots">${opts.slice(0, 9).map(o => p.optionLabel === "Lettering" ? `<i class="ch">${esc(o.sub)}</i>` : `<i style="--c:${o.hex}"></i>`).join("")}<span>${c.count}</span></span>
+        <span class="set-big-cta">See ${p.name}</span>
+      </span></button>`; }).join("");
+  document.querySelectorAll(".set-big-img img").forEach(img => { const f = () => img.parentElement.classList.add("no-img"); img.addEventListener("error", f); if (img.complete && img.naturalWidth === 0) f(); });
+}
+drawSets();
+$("#setsGrid").addEventListener("click", e => { const b = e.target.closest("[data-set]"); if (!b) return; state.pid = b.dataset.set; state.opt = null; renderCfg(); $("#configurator").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); });
 
 /* ===================== Cart ===================== */
 /* Never trust what comes back from storage: keep only lines that match a real product, option and size. */
@@ -536,10 +550,9 @@ window.__klunk = { PRODUCTS, state };
 /* ===================== Currency display ===================== */
 function renderPrices() {
   $("#heroFrom").textContent = "From " + money(Math.min(...PRODUCTS.map(minPrice)));
-  $("#featPrice").textContent = money(minPrice(PRODUCTS.find(p => p.id === "script")));
   $("#curNote").textContent = CURRENCIES[CUR].note;
   document.querySelectorAll("[data-cur]").forEach(b => b.setAttribute("aria-pressed", b.dataset.cur === CUR));
-  drawTabs(); drawPicker(); renderCfg(); renderCart();
+  drawTabs(); drawPicker(); drawSets(); renderCfg(); renderCart();
 }
 $("#curToggle").addEventListener("click", e => {
   const b = e.target.closest("[data-cur]"); if (!b || !CURRENCIES[b.dataset.cur]) return;

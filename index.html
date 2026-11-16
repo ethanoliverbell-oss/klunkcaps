@@ -334,7 +334,31 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
 
-/* Featured: Script */
+/* The three sets */
+.sets-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.sets-head h2{font-size:var(--s-3)}
+.sets-head p{color:var(--muted);max-width:40ch;margin:0}
+.sets{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.set-big{display:flex;flex-direction:column;text-align:left;padding:0;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--glass);color:var(--text);font:inherit;cursor:pointer;overflow:hidden;transition:border-color .15s}
+.set-big:hover,.set-big:focus-visible{border-color:#F4F4F2;outline:none}
+.set-big-img{position:relative;aspect-ratio:4/3;background:#141517;overflow:hidden}
+.set-big-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.set-big:hover .set-big-img img{transform:scale(1.03)}
+.set-big-img .lbl{position:absolute;left:0;bottom:0;padding:5px 8px;background:#1A1B1D;font:500 .66rem/1 var(--f-mono);color:var(--muted)}
+.set-big-img.no-img img{visibility:hidden}
+.set-big-body{display:flex;flex-direction:column;gap:10px;padding:18px 18px 20px;flex:1}
+.set-big-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.set-big-top b{font:600 var(--s-1)/1.1 var(--f-head)}
+.set-big-top span{font:600 var(--s-0)/1 var(--f-head);white-space:nowrap}
+.set-big-top small{font:500 .7rem/1 var(--f-mono);color:var(--muted);margin-right:4px}
+.set-big-body p{margin:0;color:var(--muted);font-size:var(--s--1);line-height:1.5}
+.set-big-dots{display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:.75rem;color:var(--dim)}
+.set-big-dots i{width:14px;height:14px;border-radius:2px;border:1px solid rgba(255,255,255,.18);background:var(--c)}
+.set-big-dots i.ch{width:auto;min-width:16px;height:16px;padding:0 3px;background:#E7E1D2;color:#141517;font:600 10px/14px var(--f-body);font-style:normal;text-align:center}
+.set-big-cta{margin-top:auto;padding-top:6px;font-weight:600;font-size:var(--s--1)}
+@media (max-width:900px){.sets{grid-template-columns:1fr}.set-big-img{aspect-ratio:16/9}}
+
+/* Featured: Script (legacy, unused) */
 .feat{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
 .feat-photo{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);background:var(--bg-2)}
 .feat-photo img{width:100%;height:100%;object-fit:cover}
@@ -363,7 +387,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
 .cur button{background:none;border:0;color:var(--muted);font:500 .74rem/1 var(--f-mono);padding:0 .7em;min-height:36px;cursor:pointer}
 .cur button[aria-pressed="true"]{background:#F4F4F2;color:#141517}
 .set-tab small{display:block;margin-top:5px;font:500 .7rem/1 var(--f-mono);opacity:.75}
-.set-picker{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px;margin:0 0 28px}
+.set-picker{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 28px}
 .set-card{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:14px;text-align:left;padding:12px 16px 12px 12px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:2px;color:var(--text);cursor:pointer;font:inherit;transition:border-color .15s,background .15s}
 .set-card:hover{border-color:var(--line-2);background:rgba(255,255,255,.05)}
 .set-card[aria-pressed="true"]{border-color:#F4F4F2}
@@ -394,7 +418,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
       <span class="logo-word" aria-hidden="true">KLUNK<span> CAPS</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#script">Script</a>
+      <a href="#sets">Sets</a>
       <a href="#configurator">Shop</a>
       <a href="#shipping">Shipping</a>
       <a href="#faq">FAQ</a>
@@ -411,12 +435,12 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow enter" style="--d:.05s">Our pick: Script retro keycaps</p>
+        <p class="eyebrow enter" style="--d:.05s">Three keycap sets: Script, Topo and Phantom</p>
         <h1 class="enter" style="--d:.12s">Your setup, but <em>premium</em>.</h1>
-        <p class="hero-lede enter" style="--d:.2s" id="heroLede">Meet Script: retro keycaps with English letters and a second alphabet, dyed in so they never wear off. Free shipping, 15 minutes to swap.</p>
+        <p class="hero-lede enter" style="--d:.2s" id="heroLede">Retro letters, a map pattern that glows, or colour that fades to black. Pick the set that fits your setup. Free shipping, 15 minutes to swap.</p>
         <div class="hero-ctas enter" style="--d:.28s">
-          <a class="btn btn-primary" href="#script">Shop Script</a>
-          <a class="btn btn-ghost" href="#setPicker">Compare all 3 sets</a>
+          <a class="btn btn-primary" href="#sets">See all 3 sets</a>
+          <a class="btn btn-ghost" href="#configurator">Build yours</a>
         </div>
         <div class="hero-facts enter" style="--d:.36s">
           <div><strong id="heroFrom">From $27</strong>per full set</div>
@@ -436,25 +460,14 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
     </div>
   </section>
 
-  <!-- FEATURED: SCRIPT -->
-  <section class="sec" id="script" aria-labelledby="scriptTitle" style="padding-bottom:0">
-    <div class="wrap feat">
-      <figure class="feat-photo"><img src="https://cdn.shopify.com/s/files/1/0996/5702/3816/files/S6bf2d1509ae44a6496434ea84c163f550.webp?width=960" alt="Script keycaps on a full mechanical keyboard" loading="lazy" referrerpolicy="no-referrer"><span class="lbl">OUR PICK</span></figure>
-      <div>
-        <p class="eyebrow">Featured set</p>
-        <h2 id="scriptTitle">Script. Retro keys, built to last.</h2>
-        <p class="feat-lede">Retro cream and grey keys with English letters and a small second alphabet on every cap. The letters are dyed into the plastic, so they never fade or rub off.</p>
-        <ul class="feat-list">
-          <li>Legends <span>Dye-sublimated, won't wear off</span></li>
-          <li>Keys <span>142, fits full size and compact boards</span></li>
-          <li>Material <span>Thick PBT, deep sound</span></li>
-        </ul>
-        <div class="themes" id="themes"></div>
-        <div class="feat-buy">
-          <div><strong id="featPrice">$65</strong><small>Free tracked shipping</small></div>
-          <a class="btn btn-primary" href="#configurator" id="featGo">Choose your theme</a>
-        </div>
+  <!-- THE THREE SETS -->
+  <section class="sec" id="sets" aria-labelledby="setsTitle" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="sets-head">
+        <h2 id="setsTitle">Three sets. Pick your look.</h2>
+        <p>Every set is PBT, fits MX-style switches and ships free with tracking.</p>
       </div>
+      <div class="sets" id="setsGrid"></div>
     </div>
   </section>
 
@@ -559,7 +572,7 @@ body.cart-open .drawer{transform:none;visibility:visible;transition:transform .2
   </div>
 </aside>
 
-<script type="module" src="app.js?v=13"></script>
+<script type="module" src="app.js?v=14"></script>
 <!--
 ==========================================================================
 DESIGN TOKENS
